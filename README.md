@@ -1,0 +1,2 @@
+# wan_android
+init
