@@ -3,4 +3,39 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <!--Neutral-->
+    <color name="Transparent">#00000000</color>
+    <color name="White">#FFFFFF</color>
+    <color name="TransWhite80">#CCFFFFFF</color>
+    <color name="TransWhite60">#99FFFFFF</color>
+    <color name="TransWhite50">#80FFFFFF</color>
+    <color name="TransWhite30">#4DFFFFFF</color>
+    <color name="TransWhite10">#1AFFFFFF</color>
+    <color name="TransWhite5">#0DFFFFFF</color>
+    <color name="LightGrey5">#7F9A9A9A</color>
+    <color name="LightGrey4">#F7F7F7</color>
+    <color name="LightGrey3">#F0EFEF</color>
+    <color name="LightGrey2">#C5C5C5</color>
+    <color name="LightGrey2_20">#33C5C5C5</color>
+    <color name="LightGrey1">#9A9A9A</color>
+    <color name="Grey">#676767</color>
+    <color name="Grey_70">#707070</color>
+    <color name="Grey_697078">#697078</color>
+    <color name="DarkBlue">#363A45</color>
+    <color name="Black">#1C1C1C</color>
+    <color name="Black_1a">#1A1A1A</color>
+    <color name="Black_161a1d">#161A1D</color>
+    <color name="Black_383e43">#383e43</color>
+    <color name="Black_131a25">#131a25</color>
+    <color name="Black_06">#060606</color>
+    <color name="Black_3d">#3D3D3D</color>
+    <color name="TransBlack80">#CC1C1C1C</color>
+    <color name="TransBlack70">#B31C1C1C</color>
+    <color name="TransBlack50">#801C1C1C</color>
+    <color name="TransBlack40">#661C1C1C</color>
+    <color name="TransBlack30">#4D1C1C1C</color>
+    <color name="TransBlack10">#1A1C1C1C</color>
+    <color name="TransBlack5">#0D1C1C1C</color>
+
 </resources>

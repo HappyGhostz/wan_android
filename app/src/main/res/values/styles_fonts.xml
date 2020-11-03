@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="H1">
+        <item name="android:textSize">@dimen/font_size_32</item>
+        <item name="android:fontFamily">@font/app_medium_font</item>
+
+    </style>
+
+    <style name="H2">
+        <item name="android:textSize">@dimen/font_size_24</item>
+        <item name="android:fontFamily">@font/app_regular_font</item>
+    </style>
+
+    <style name="H3">
+        <item name="android:textSize">@dimen/font_size_20</item>
+        <item name="android:fontFamily">@font/app_medium_font</item>
+    </style>
+
+    <style name="H4">
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:fontFamily">@font/app_medium_font</item>
+    </style>
+
+    <style name="H5">
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:fontFamily">@font/app_regular_font</item>
+    </style>
+
+    <style name="Body1">
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:fontFamily">@font/app_medium_font</item>
+    </style>
+
+    <style name="Body2">
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:fontFamily">@font/app_regular_font</item>
+    </style>
+
+    <style name="Caption1">
+        <item name="android:textSize">@dimen/font_size_12</item>
+        <item name="android:fontFamily">@font/app_medium_font</item>
+    </style>
+
+    <style name="Caption2">
+        <item name="android:textSize">@dimen/font_size_12</item>
+        <item name="android:fontFamily">@font/app_regular_font</item>
+    </style>
+
+    <style name="BUTTON">
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:fontFamily">@font/app_bold_font</item>
+    </style>
+
+    <style name="LiShuH2">
+        <item name="android:textSize">@dimen/font_size_24</item>
+        <item name="android:fontFamily">@font/li_shu_font</item>
+    </style>
+
+</resources>

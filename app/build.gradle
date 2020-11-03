@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion AndroidVersion.compileSdkVersion
@@ -36,6 +37,8 @@ dependencies {
     implementation AndroidX.appcompat
     implementation AndroidX.constraintlayout
     implementation AndroidX.viewModel
+    implementation AppDependencies.dagger
+    annotationProcessor AppDependencies.daggerCompiler
 }
 
 dependencies {

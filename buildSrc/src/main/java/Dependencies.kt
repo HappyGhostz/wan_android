@@ -1,5 +1,6 @@
 object Versions {
     const val  lifecycle_version = "2.2.0"
+    const val  dagger_version = "2.29.1"
 }
 
 object AndroidX {
@@ -18,4 +19,9 @@ object AndroidVersion{
     const val targetSdkVersion =  30
     const val versionCode = 1
     const val versionName = "1.0"
+}
+
+object AppDependencies{
+    val dagger = "com.google.dagger:dagger:${Versions.dagger_version}"
+    val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger_version}"
 }

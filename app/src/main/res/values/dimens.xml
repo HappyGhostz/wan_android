@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2012-2020 Grab Taxi Holdings PTE LTD (GRAB), All Rights Reserved. NOTICE: All information contained herein is, and remains the property of GRAB. The intellectual and technical concepts contained herein are confidential, proprietary and controlled by GRAB and may be covered by patents, patents in process, and are protected by trade secret or copyright law.
+  ~ You are strictly forbidden to copy, download, store (in any medium), transmit, disseminate, adapt or change this material in any way unless prior written permission is obtained from GRAB. Access to the source code contained herein is hereby forbidden to anyone except current GRAB employees or contractors with binding Confidentiality and Non-disclosure agreements explicitly covering such access.
+  ~
+  ~ The copyright notice above does not evidence any actual or intended publication or disclosure of this source code, which includes information that is confidential and/or proprietary, and is a trade secret, of GRAB.
+  ~ ANY REPRODUCTION, MODIFICATION, DISTRIBUTION, PUBLIC PERFORMANCE, OR PUBLIC DISPLAY OF OR THROUGH USE OF THIS SOURCE CODE WITHOUT THE EXPRESS WRITTEN CONSENT OF GRAB IS STRICTLY PROHIBITED, AND IN VIOLATION OF APPLICABLE LAWS AND INTERNATIONAL TREATIES. THE RECEIPT OR POSSESSION OF THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT MAY DESCRIBE, IN WHOLE OR IN PART.
+  -->
+
+<!--
+    Material design using grid to align elements as well as goo designers
+    https://material.google.com/layout/metrics-keylines.html
+    So to align your elements instead of using random value use grid values
+     -x1   => -8dp
+     -x0.5 => -4dp
+      x0   =>  0dp
+      x1   =>  8dp - base
+      x1.5 =>  12dp
+      x2   =>  16dp
+    So at the end all will be aligned, and when design will be consistent (if it will happen=)
+    all frequently used grid values can be extracted into meaningful keys
+    -->
+<resources>
+
+    <dimen name="grid_minus_32">-128dp</dimen>
+    <dimen name="grid_minus_14">-56dp</dimen>
+    <dimen name="grid_minus_80">-80dp</dimen>
+    <dimen name="grid_minus_12_5">-50dp</dimen>
+    <dimen name="grid_minus_8_5">-68dp</dimen>
+    <dimen name="grid_minus_5">-20dp</dimen>
+    <dimen name="grid_minus_1_5">-12dp</dimen>
+    <dimen name="grid_minus_4">-16dp</dimen>
+    <dimen name="grid_minus_3_5">-14dp</dimen>
+    <dimen name="grid_minus_2">-8dp</dimen>
+    <dimen name="grid_minus_0_5">-4dp</dimen>
+    <dimen name="grid_minus_3dp">-3dp</dimen>
+    <dimen name="grid_minus_2dp">-2dp</dimen>
+    <dimen name="grid_minus_1dp">-1dp</dimen>
+    <dimen name="grid_0">0dp</dimen>
+    <dimen name="grid_0_1_2_5">0.5dp</dimen>
+    <dimen name="grid_1dp">1dp</dimen>
+    <dimen name="grid_1_5dp">1.5dp</dimen>
+    <dimen name="grid_0_5">2dp</dimen>
+    <dimen name="grid_0_6_2_5">2.5dp</dimen>
+    <dimen name="grid_0_7_5">3dp</dimen>
+    <dimen name="grid_1">4dp</dimen>
+    <dimen name="grid_1_25">5dp</dimen>
+    <dimen name="grid_1_5">6dp</dimen>
+    <dimen name="grid_2">8dp</dimen>
+    <dimen name="grid_2_5">10dp</dimen>
+    <dimen name="grid_2_7_5">11dp</dimen>
+    <dimen name="grid_3">12dp</dimen>
+    <dimen name="grid_3_5">14dp</dimen>
+    <dimen name="grid_4">16dp</dimen>
+    <dimen name="grid_4_5">18dp</dimen>
+    <dimen name="grid_5">20dp</dimen>
+    <dimen name="grid_5_5">22dp</dimen>
+    <dimen name="grid_6">24dp</dimen>
+    <dimen name="grid_6_25">25dp</dimen>
+    <dimen name="grid_6_5">26dp</dimen>
+    <dimen name="grid_7">28dp</dimen>
+    <dimen name="grid_7_5">30dp</dimen>
+    <dimen name="grid_8">32dp</dimen>
+    <dimen name="grid_8_5">34dp</dimen>
+    <dimen name="grid_9">36dp</dimen>
+    <dimen name="grid_9_5">38dp</dimen>
+    <dimen name="grid_9_75">39dp</dimen>
+    <dimen name="grid_10">40dp</dimen>
+    <dimen name="grid_10_5">42dp</dimen>
+    <dimen name="grid_10_75">43dp</dimen>
+    <dimen name="grid_11">44dp</dimen>
+    <dimen name="grid_11_5">46dp</dimen>
+    <dimen name="grid_12">48dp</dimen>
+    <dimen name="grid_12_5">50dp</dimen>
+    <dimen name="grid_13">52dp</dimen>
+    <dimen name="grid_13_5">54dp</dimen>
+    <dimen name="grid_14">56dp</dimen>
+    <dimen name="grid_14_5">58dp</dimen>
+    <dimen name="grid_15">60dp</dimen>
+    <dimen name="grid_15_5">62dp</dimen>
+    <dimen name="grid_16">64dp</dimen>
+    <dimen name="grid_16_25">65dp</dimen>
+    <dimen name="grid_16_5">66dp</dimen>
+    <dimen name="grid_17">68dp</dimen>
+    <dimen name="grid_17_5">70dp</dimen>
+    <dimen name="grid_18">72dp</dimen>
+    <dimen name="grid_18_5">74dp</dimen>
+    <dimen name="grid_19">76dp</dimen>
+    <dimen name="grid_19_5">78dp</dimen>
+    <dimen name="grid_20">80dp</dimen>
+    <dimen name="grid_20_5">82dp</dimen>
+    <dimen name="grid_21">84dp</dimen>
+    <dimen name="grid_21_5">86dp</dimen>
+    <dimen name="grid_22">88dp</dimen>
+    <dimen name="grid_22_5">90dp</dimen>
+    <dimen name="grid_23">92dp</dimen>
+    <dimen name="grid_23_5">94dp</dimen>
+    <dimen name="grid_24">96dp</dimen>
+    <dimen name="grid_24_5">98dp</dimen>
+    <dimen name="grid_25">100dp</dimen>
+    <dimen name="grid_25_5">102dp</dimen>
+    <dimen name="grid_26">104dp</dimen>
+    <dimen name="grid_27">108dp</dimen>
+    <dimen name="grid_28">112dp</dimen>
+    <dimen name="grid_29">116dp</dimen>
+    <dimen name="grid_29_5">118dp</dimen>
+    <dimen name="grid_30">120dp</dimen>
+    <dimen name="grid_31">124dp</dimen>
+    <dimen name="grid_32">128dp</dimen>
+    <dimen name="grid_32_5">130dp</dimen>
+    <dimen name="grid_33">132dp</dimen>
+    <dimen name="grid_33_5">134dp</dimen>
+    <dimen name="grid_34">136dp</dimen>
+    <dimen name="grid_34_5">138dp</dimen>
+    <dimen name="grid_35">140dp</dimen>
+    <dimen name="grid_36">144dp</dimen>
+    <dimen name="grid_37_5">150dp</dimen>
+    <dimen name="grid_38">152dp</dimen>
+    <dimen name="grid_39">156dp</dimen>
+    <dimen name="grid_39_5">158dp</dimen>
+    <dimen name="grid_40">160dp</dimen>
+    <dimen name="grid_40_5">162dp</dimen>
+    <dimen name="grid_41">164dp</dimen>
+    <dimen name="grid_42">168dp</dimen>
+    <dimen name="grid_43">172dp</dimen>
+    <dimen name="grid_44">176dp</dimen>
+    <dimen name="grid_45">180dp</dimen>
+    <dimen name="grid_45_5">182dp</dimen>
+    <dimen name="grid_46">184dp</dimen>
+    <dimen name="grid_47">188dp</dimen>
+    <dimen name="grid_48">192dp</dimen>
+    <dimen name="grid_49">196dp</dimen>
+    <dimen name="grid_50">200dp</dimen>
+    <dimen name="grid_50_50">202dp</dimen>
+    <dimen name="grid_51">204dp</dimen>
+    <dimen name="grid_56">224dp</dimen>
+    <dimen name="grid_57">228dp</dimen>
+    <dimen name="grid_58">232dp</dimen>
+    <dimen name="grid_58_5">234dp</dimen>
+    <dimen name="grid_60">240dp</dimen>
+    <dimen name="grid_60_25">241dp</dimen>
+    <dimen name="grid_62_5">250dp</dimen>
+    <dimen name="grid_63">252dp</dimen>
+    <dimen name="grid_66">264dp</dimen>
+    <dimen name="grid_67_5">270dp</dimen>
+    <dimen name="grid_70">280dp</dimen>
+    <dimen name="grid_72">288dp</dimen>
+    <dimen name="grid_72_5">290dp</dimen>
+    <dimen name="grid_74">296dp</dimen>
+    <dimen name="grid_78">312dp</dimen>
+    <dimen name="grid_79">316dp</dimen>
+    <dimen name="grid_82">328dp</dimen>
+    <dimen name="grid_85">340dp</dimen>
+    <dimen name="grid_90">360dp</dimen>
+    <dimen name="grid_92">388dp</dimen>
+    <dimen name="grid_93">392dp</dimen>
+    <dimen name="grid_110">440dp</dimen>
+    <dimen name="grid_500">2000dp</dimen>
+    <dimen name="grid_3dp">3dp</dimen>
+    <dimen name="grid_9dp">9dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
+    <dimen name="dp_3">3dp</dimen>
+    <dimen name="dp_5">5dp</dimen>
+    <dimen name="dp_7">7dp</dimen>
+    <dimen name="dp_9">9dp</dimen>
+    <dimen name="dp_13">13dp</dimen>
+    <dimen name="dp_14">14dp</dimen>
+    <dimen name="dp_15">15dp</dimen>
+    <dimen name="dp_17">17dp</dimen>
+    <dimen name="dp_19">19dp</dimen>
+    <dimen name="dp_21">21dp</dimen>
+    <dimen name="dp_26">26dp</dimen>
+    <dimen name="dp_39">39dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_48">48dp</dimen>
+    <dimen name="dp_51">51dp</dimen>
+    <dimen name="dp_52">52dp</dimen>
+    <dimen name="dp_75">75dp</dimen>
+
+    <!-- DEFAULT SPACING-->
+    <dimen name="spacing_micro">@dimen/grid_1</dimen>
+    <dimen name="spacing_minor">@dimen/grid_2</dimen>
+    <dimen name="spacing_normal">@dimen/grid_3</dimen>
+    <dimen name="spacing_major">@dimen/grid_4</dimen>
+    <dimen name="spacing_huge">@dimen/grid_10</dimen>
+    <dimen name="spacing_ultra_huge">@dimen/grid_15</dimen>
+    <dimen name="spacing_enormous">@dimen/grid_16</dimen>
+
+    <!-- DEFAULT MARGIN-->
+    <dimen name="default_margin_xtiny">@dimen/grid_0_5</dimen>
+    <dimen name="default_margin_small">@dimen/grid_1</dimen>
+    <dimen name="default_margin_xxsmall">@dimen/grid_2</dimen>
+    <dimen name="default_margin_normal">@dimen/grid_2_5</dimen>
+    <dimen name="default_margin_xnormal">@dimen/grid_3</dimen>
+    <dimen name="default_margin_medium">@dimen/grid_4</dimen>
+    <dimen name="default_margin_large">@dimen/grid_5</dimen>
+    <dimen name="default_margin_xlarge">@dimen/grid_6</dimen>
+    <dimen name="default_margin_huge">@dimen/grid_10</dimen>
+    <dimen name="default_margin_xxhuge">@dimen/grid_15</dimen>
+    <dimen name="default_margin_enormous">@dimen/grid_20</dimen>
+    <dimen name="default_margin_xhuge">50dp</dimen>
+
+
+    <!-- DEFAULT PADDING-->
+    <dimen name="default_padding_small">@dimen/grid_1</dimen>
+    <dimen name="default_padding_medium">@dimen/grid_4</dimen>
+    <dimen name="default_padding_normal">10dp</dimen>
+    <dimen name="default_padding_xxxmedium">@dimen/grid_4_5</dimen>
+    <dimen name="default_padding_large">@dimen/grid_5</dimen>
+    <dimen name="default_padding_huge">@dimen/grid_10</dimen>
+
+    <!--DEFAULT FONT SIZE-->
+    <dimen name="font_size_small">10sp</dimen>
+    <dimen name="font_size_xsmall">12sp</dimen>
+    <dimen name="font_size_xxsmall">14sp</dimen>
+    <dimen name="font_size_xxxsmall">16sp</dimen>
+    <dimen name="font_size_normal">18sp</dimen>
+    <dimen name="font_size_xnormal">20sp</dimen>
+    <dimen name="font_size_xmedium">26sp</dimen>
+    <dimen name="font_size_xxmedium">28sp</dimen>
+
+    <!--DEFAULT LINE SPACE-->
+    <dimen name="space_0_5">2dp</dimen>
+    <dimen name="space_1">4dp</dimen>
+    <dimen name="space_1_5">6dp</dimen>
+    <dimen name="space_2">8dp</dimen>
+
+    <!-- DEFAULT ROUND CONNER -->
+    <dimen name="default_round_conner_small">@dimen/grid_0_5</dimen>
+    <dimen name="default_round_conner_xsmall">6dip</dimen>
+    <dimen name="default_round_conner">6dp</dimen> <!-- TODO remove either xsmall or this -->
+    <dimen name="default_round_conner_xxsmall">@dimen/grid_1_5</dimen>
+    <dimen name="default_round_conner_normal">6dp</dimen>
+    <dimen name="default_round_conner_medium">10dp</dimen>
+    <dimen name="default_round_conner_huge">30dp</dimen>
+    <dimen name="default_round_conner_xhuge">50dp</dimen>
+
+    <!--VIEW-->
+    <dimen name="thickness">3dp</dimen>
+
+    <dimen name="nbf_image_padding">5dp</dimen>
+    <dimen name="nbf_dot_margin">27dp</dimen>
+
+    <!---->
+    <dimen name="default_actionbar_height">56dp</dimen>
+    <dimen name="default_message_bar_height">40dp</dimen>
+
+
+    <dimen name="font_size_8">8sp</dimen>
+    <dimen name="small_font">12sp</dimen>
+    <dimen name="medium_font">14sp</dimen>
+    <dimen name="normal_font">16sp</dimen>
+    <dimen name="big_font">18sp</dimen>
+    <dimen name="large_font">20sp</dimen>
+    <dimen name="font_size_4">4sp</dimen>
+    <dimen name="font_size_10">10sp</dimen>
+    <dimen name="font_size_12">12sp</dimen>
+    <dimen name="font_size_14">14sp</dimen>
+    <dimen name="font_size_15">15sp</dimen>
+    <dimen name="font_size_16">16sp</dimen>
+    <dimen name="font_size_18">18sp</dimen>
+    <dimen name="font_size_20">20sp</dimen>
+    <dimen name="font_size_22">22sp</dimen>
+    <dimen name="font_size_24">24sp</dimen>
+    <dimen name="font_size_26">26sp</dimen>
+    <dimen name="font_size_28">28sp</dimen>
+    <dimen name="font_size_30">30sp</dimen>
+    <dimen name="font_size_32">32sp</dimen>
+    <dimen name="font_size_36">36sp</dimen>
+    <dimen name="font_size_huge">40sp</dimen>
+    <dimen name="font_size_44">44sp</dimen>
+    <dimen name="font_size_48">48sp</dimen>
+
+    <dimen name="app_bar_elevation">4dp</dimen>
+
+    <!-- TOOLTIP DIMENS -->
+    <dimen name="simpletooltip_overlay_offset">10dp</dimen>
+    <dimen name="simpletooltip_margin">10dp</dimen>
+    <dimen name="simpletooltip_padding">8dp</dimen>
+    <dimen name="simpletooltip_arrow_width">30dp</dimen>
+    <dimen name="simpletooltip_arrow_height">15dp</dimen>
+    <dimen name="simpletooltip_arrow_stroke_width">0.5dp</dimen>
+    <dimen name="simpletooltip_animation_padding">4dp</dimen>
+
+    <dimen name="edit_text_inset_horizontal_material">0dp</dimen>
+    <dimen name="edit_text_inset_top_material">10dp</dimen>
+    <dimen name="edit_text_inset_bottom_material">7dp</dimen>
+    <dimen name="hint_collapsed_size">14sp</dimen>
+    <dimen name="hint_expanded_size">16sp</dimen>
+    <dimen name="error_field_margin">4dp</dimen>
+    <dimen name="error_field_text_size">12sp</dimen>
+    <dimen name="registration_hint_collapsed_size">12sp</dimen>
+    <dimen name="edit_text_status_icon_size">16dp</dimen>
+    <dimen name="edit_text_status_icon_padding">15dp</dimen>
+    <dimen name="edit_profile_field_padding">37.5dp</dimen>
+    <dimen name="edit_profile_field_margin_top">8dp</dimen>
+
+    <dimen name="radius_cornered_shape">4dp</dimen>
+    <dimen name="radius_cornered_shape_12">12dp</dimen>
+
+    <dimen name="activity_horizontal_margin">@dimen/grid_4</dimen>
+    <dimen name="default_circle_indicator_radius">3dp</dimen>
+    <dimen name="default_circle_indicator_stroke_width">1dp</dimen>
+    <dimen name="default_circle_indicator_extra_spacing">0dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="full_width_dialog_content_padding">35dp</dimen>
+    <dimen name="default_margin_tiny">1dp</dimen>
+
+    <dimen name="radius_cornered_shape_small">2.1dp</dimen>
+
+
+    <dimen name="red_dot_radius">8dp</dimen>
+    <dimen name="default_margin_xxxlarge">32dp</dimen>
+    <dimen name="fragment_horizontal_margin">16dp</dimen>
+
+    <dimen name="entrance_line_height">1dp</dimen>
+    <dimen name="list_divider_height">1dp</dimen>
+
+    <dimen name="tracking_panel_height">179dp</dimen>
+    <dimen name="wallet_tool_tip_width">220dp</dimen>
+    <dimen name="wallet_tool_tip_height">110dp</dimen>
+    <dimen name="currencies_dialog_top">130dp</dimen>
+    <dimen name="grab_pay_home_tool_tip_width">248dp</dimen>
+    <dimen name="currencies_dialog_max_height">216dp</dimen>
+    <dimen name="currencies_dialog_min_height">56dp</dimen>
+    <dimen name="currencies_dialog_width">246dp</dimen>
+    <dimen name="my_reward_card_height">140dp</dimen>
+
+    <dimen name="prominence_switch_width">148dp</dimen>
+    <dimen name="pole_shrink_offset">3dp</dimen>
+
+    <dimen name="JumpingDotsView_jump_height_default">6dp</dimen>
+    <dimen name="JumpingDotsView_dots_space_default">4dp</dimen>
+    <dimen name="JumpingDotsView_dots_radius_default">2dp</dimen>
+
+    <!-- NewFacePaymentWidget offset -->
+    <dimen name="payment_widget_offset">52dp</dimen>
+
+    <dimen name="radius_cornered_shape_v2">6dp</dimen>
+
+    <!--use this dimen anywhere for bottom tab bar-->
+    <dimen name="bottom_tab_height">56dp</dimen>
+    <dimen name="status_widget_corner_radius">5dp</dimen>
+
+    <!--Re-center icon-->
+    <dimen name="re_center_right_margin">5dp</dimen>
+
+    <!--Cashout tooltip content_size/2-->
+    <dimen name="cash_out_tooltip_content_size_2">125dp</dimen>
+
+    <!--Text Size-->
+    <dimen name="text_size_2">2sp</dimen>
+    <dimen name="text_size_3">3sp</dimen>
+    <dimen name="text_size_4">4sp</dimen>
+    <dimen name="text_size_6">6sp</dimen>
+    <dimen name="text_size_7">7sp</dimen>
+    <dimen name="text_size_8">8sp</dimen>
+    <dimen name="text_size_9">9sp</dimen>
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_32">32sp</dimen>
+
+    <dimen name="food_dialog_max_order_image_height">300dp</dimen>
+    <dimen name="food_dialog_image_height">270dp</dimen>
+    <dimen name="food_dialog_mac_image_height">248dp</dimen>
+    <dimen name="food_dialog_mac_image_width">360dp</dimen>
+    <dimen name="food_bottom_sheet_image_height">147dp</dimen>
+
+    <!--paynow carousel card height-->
+    <dimen name="pay_now_card_height">128dp</dimen>
+    <dimen name="circle_sroke_width">1.5dp</dimen>
+
+    <dimen name="toggle_tooltip_margin">-10dp</dimen>
+
+    <dimen name="thumb_width">30dp</dimen>
+    <dimen name="thumb_height">30dp</dimen>
+
+    <!--new receipt-->
+    <dimen name="new_receipt_image_margin_bottom">-10dp</dimen>
+    <dimen name="new_refund_image_margin_bottom">-32dp</dimen>
+    <dimen name="new_receipt_view_detail_margin_bottom">90dp</dimen>
+    <dimen name="new_refund_view_detail_margin_bottom">66dp</dimen>
+
+    <dimen name="express_service_not_available_image_height">212dp</dimen>
+    <dimen name="homefeed_carousel_promo_dish_height">116sp</dimen>
+    <dimen name="homefeed_carousel_normal_height">92sp</dimen>
+
+</resources>

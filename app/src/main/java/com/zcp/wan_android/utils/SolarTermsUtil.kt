@@ -87,7 +87,7 @@ class SolarTermsUtil {
     /// @param name
     ///            节气的名称
     /// @return 返回节气是相应月份的第几天
-    fun getSolarTermNum(year: Int, solarTermName: SolarTermsEnum): Int {
+    private fun getSolarTermNum(year: Int, solarTermName: SolarTermsEnum): Int {
         var centuryValue = 0.0 // 节气的世纪值，每个节气的每个世纪值都不同
         if (year < 2001 || year > 2100) {
             throw Exception("不支持此年份：\" + $year + \"，目前只支持1901年到2100年的时间范围")
@@ -122,7 +122,7 @@ class SolarTermsUtil {
     /// @param name
     ///            节气名称
     /// @return 返回其偏移量
-    fun specialYearOffset(year: Int, name: SolarTermsEnum): Int {
+    private fun specialYearOffset(year: Int, name: SolarTermsEnum): Int {
         initOffsetMap()
         var offset = 0
         offset += getOffset(decreaseOffsetmap, year, name, -1)
@@ -131,7 +131,7 @@ class SolarTermsUtil {
         return offset
     }
 
-    fun getOffset(
+    private fun getOffset(
         map: Map<SolarTermsEnum, List<Int>>,
         year: Int,
         name: SolarTermsEnum,
@@ -150,7 +150,7 @@ class SolarTermsUtil {
         return off
     }
 
-    fun solarTermToString(year: Int, month: Int, day: Int): SolarTermsEnum {
+    private fun solarTermToString(year: Int, month: Int, day: Int): SolarTermsEnum {
         mYear = year
         mSolarData.clear()
         mSolarName.clear()
@@ -265,7 +265,7 @@ class SolarTermsUtil {
         }
     }
 
-    fun initOffsetMap() {
+    private fun initOffsetMap() {
         decreaseOffsetmap = mapOf(
             SolarTermsEnum.YUSHUI to listOf(2026),
             SolarTermsEnum.DONGZHI to listOf(1918, 2021),

@@ -26,6 +26,36 @@
             app:src="@{vm.splashImg}"
             tools:src="@drawable/yushui" />
 
+
+        <TextView
+            style="@style/LiShuH2"
+            android:id="@+id/tv_sentence_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/grid_15"
+            android:layout_marginRight="@dimen/grid_6"
+            android:ems="1"
+            android:gravity="center"
+            android:text="@{vm.splashSentenceOne}"
+            android:textColor="@color/Black"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="最是一年春好处" />
+
+        <TextView
+            style="@style/LiShuH2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/grid_15"
+            android:layout_marginEnd="@dimen/grid_12"
+            android:ems="1"
+            android:gravity="center"
+            android:text="@{vm.setSplashSentenceTwo}"
+            android:textColor="@color/Black"
+            app:layout_constraintRight_toRightOf="@id/tv_sentence_one"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="绝胜烟柳满皇都" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
