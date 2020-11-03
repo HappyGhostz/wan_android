@@ -1,4 +1,8 @@
 package com.zcp.wan_android.ui.splash.viewmodel
 
-class SplashViewModel {
+import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModel
+
+class SplashViewModel : ViewModel() {
+    var splashImg = ObservableField<Int>()
 }

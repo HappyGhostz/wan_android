@@ -1,4 +1,9 @@
 package com.zcp.wan_android
 
-class WanAndroidApp {
+import android.app.Application
+
+class WanAndroidApp: Application() {
+    override fun onCreate() {
+        super.onCreate()
+    }
 }
