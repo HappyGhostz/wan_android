@@ -1,4 +1,4 @@
-package com.zcp.wan_android.utils
+package com.zcp.wanAndroid.utils
 
 import java.lang.Exception
 

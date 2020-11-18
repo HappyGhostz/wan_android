@@ -1,4 +1,4 @@
-package com.zcp.wan_android
+package com.zcp.wanAndroid
 
 import org.junit.Test
 

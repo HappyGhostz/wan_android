@@ -22,6 +22,6 @@ object AndroidVersion{
 }
 
 object AppDependencies{
-    val dagger = "com.google.dagger:dagger:${Versions.dagger_version}"
-    val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger_version}"
+    const val dagger = "com.google.dagger:dagger:${Versions.dagger_version}"
+    const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger_version}"
 }

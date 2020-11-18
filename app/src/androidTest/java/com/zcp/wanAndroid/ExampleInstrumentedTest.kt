@@ -1,4 +1,4 @@
-package com.zcp.wan_android
+package com.zcp.wanAndroid
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

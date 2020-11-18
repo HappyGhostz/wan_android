@@ -1,6 +1,6 @@
-package com.zcp.wan_android.utils
+package com.zcp.wanAndroid.utils
 
-import com.zcp.wan_android.R
+import com.zcp.wanAndroid.R
 
 
 var splashImgs = mapOf<SolarTermsEnum, Int>(

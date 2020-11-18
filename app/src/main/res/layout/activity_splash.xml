@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="vm"
-            type="com.zcp.wan_android.ui.splash.viewmodel.SplashViewModel" />
+            type="com.zcp.wanAndroid.ui.splash.viewmodel.SplashViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="com.zcp.wanAndroid.R" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent">
 
         <ImageView
             android:layout_width="match_parent"
@@ -23,7 +26,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:src="@{vm.splashImg}"
+            android:src="@{vm.splashImg}"
             tools:src="@drawable/yushui" />
 
 
@@ -32,7 +35,7 @@
             android:id="@+id/tv_sentence_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/grid_15"
+            android:layout_marginTop="@dimen/grid_20"
             android:layout_marginRight="@dimen/grid_6"
             android:ems="1"
             android:gravity="center"
@@ -41,16 +44,15 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="最是一年春好处" />
-
         <TextView
             style="@style/LiShuH2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/grid_15"
+            android:layout_marginTop="@dimen/grid_20"
             android:layout_marginEnd="@dimen/grid_12"
             android:ems="1"
             android:gravity="center"
-            android:text="@{vm.setSplashSentenceTwo}"
+            android:text="@{vm.splashSentenceTwo}"
             android:textColor="@color/Black"
             app:layout_constraintRight_toRightOf="@id/tv_sentence_one"
             app:layout_constraintTop_toTopOf="parent"

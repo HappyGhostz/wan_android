@@ -1,4 +1,4 @@
-package com.zcp.wan_android
+package com.zcp.wanAndroid
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -38,11 +38,11 @@ dependencies {
     implementation AndroidX.constraintlayout
     implementation AndroidX.viewModel
     implementation AppDependencies.dagger
-    annotationProcessor AppDependencies.daggerCompiler
+    kapt AppDependencies.daggerCompiler
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

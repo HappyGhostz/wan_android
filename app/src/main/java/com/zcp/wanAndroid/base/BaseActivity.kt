@@ -1,10 +1,12 @@
-package com.zcp.wan_android.base
+package com.zcp.wanAndroid.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.zcp.wan_android.utils.FullScreenUtil
+import com.zcp.wanAndroid.WanAndroidApp
+import com.zcp.wanAndroid.appDI.ApplicationComponent
+import com.zcp.wanAndroid.utils.FullScreenUtil
 
 abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
@@ -17,16 +19,19 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setCustomImmersive()
         bindWrapper = BindingWrapper(
-            DataBindingUtil.setContentView(this,getLayoutResource())
+            DataBindingUtil.setContentView(this, getLayoutResource())
         )
         initInjector()
+        initView()
     }
 
     abstract fun getLayoutResource(): Int
 
     abstract fun initInjector()
 
-    fun setCustomImmersive() {
+    abstract fun initView()
+
+    private fun setCustomImmersive() {
         var fullScreenUtil = FullScreenUtil(window, context = this)
         if (customImmersive) {
             fullScreenUtil.setImmersiveScreen()
@@ -34,6 +39,11 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
             fullScreenUtil.setFullScreen()
         }
     }
+
+    protected fun getAppComponent(): ApplicationComponent? {
+        return WanAndroidApp.instance().getAppComponent()
+    }
+
 }
 
 
