@@ -33,7 +33,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
     abstract fun initView()
 
     private fun setCustomImmersive() {
-        var fullScreenUtil = FullScreenUtil(window, context = this)
+        val fullScreenUtil = FullScreenUtil(window, context = this)
         if (customImmersive) {
             fullScreenUtil.setImmersiveScreen()
         } else {
@@ -41,7 +41,22 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         }
     }
 
-    fun initActionBar(toolbar: Toolbar, string: String, isShowHomeEnable:Boolean){
+    open fun getStatusBarHeight(): Int {
+        var statusBarHeight = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            statusBarHeight = resources.getDimensionPixelSize(resourceId)
+        }
+        return statusBarHeight
+    }
+
+    open fun px2dp(pxVal: Float): Float {
+        val scale: Float = resources.displayMetrics.density
+        return pxVal / scale
+    }
+
+
+    fun initActionBar(toolbar: Toolbar, string: String, isShowHomeEnable: Boolean = false){
         toolbar.title=string
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(isShowHomeEnable)

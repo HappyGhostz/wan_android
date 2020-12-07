@@ -61,9 +61,6 @@ class FullScreenUtil(window: Window, context: Context) {
     }
 
     fun setFullScreenWindowLayoutInDisplayCutoutHuaWei() {
-        if (mWindow == null) {
-            return
-        }
         val layoutParams: WindowManager.LayoutParams = mWindow.attributes
         try {
             val layoutParamsExCls = Class.forName("com.huawei.android.view.LayoutParamsEx")
@@ -209,14 +206,11 @@ class FullScreenUtil(window: Window, context: Context) {
                 it.show(WindowInsets.Type.systemBars())
             }
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mWindow.let {
-                it.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-                it.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
-                it.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                it.statusBarColor = Color.TRANSPARENT
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) it.decorView.systemUiVisibility =
-                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            mWindow.run {
+                clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+                decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                statusBarColor = Color.TRANSPARENT
             }
         } else {
             mWindow.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
