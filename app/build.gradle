@@ -39,6 +39,7 @@ dependencies {
     implementation AndroidX.viewModel
     implementation AppDependencies.dagger
     kapt AppDependencies.daggerCompiler
+    implementation AppDependencies.anko
 }
 
 dependencies {

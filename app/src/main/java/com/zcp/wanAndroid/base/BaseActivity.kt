@@ -2,6 +2,7 @@ package com.zcp.wanAndroid.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.zcp.wanAndroid.WanAndroidApp
@@ -38,6 +39,12 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         } else {
             fullScreenUtil.setFullScreen()
         }
+    }
+
+    fun initActionBar(toolbar: Toolbar, string: String, isShowHomeEnable:Boolean){
+        toolbar.title=string
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(isShowHomeEnable)
     }
 
     protected fun getAppComponent(): ApplicationComponent? {

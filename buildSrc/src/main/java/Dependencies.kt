@@ -1,6 +1,7 @@
 object Versions {
     const val  lifecycle_version = "2.2.0"
     const val  dagger_version = "2.29.1"
+    const val  anko_version = "0.10.8"
 }
 
 object AndroidX {
@@ -24,4 +25,6 @@ object AndroidVersion{
 object AppDependencies{
     const val dagger = "com.google.dagger:dagger:${Versions.dagger_version}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger_version}"
+    const val anko =  "org.jetbrains.anko:anko:${Versions.anko_version}"
+
 }

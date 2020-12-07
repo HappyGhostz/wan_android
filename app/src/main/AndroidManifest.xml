@@ -10,16 +10,25 @@
         android:supportsRtl="true"
         android:name="com.zcp.wanAndroid.WanAndroidApp"
         android:resizeableActivity="true"
-        android:theme="@style/AppTheme">
-        <meta-data android:name="android.max_aspect" android:value="2.9"/>
-        <activity android:name="com.zcp.wanAndroid.ui.splash.SplashActivity">
+        android:theme="@style/BaseTheme">
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.9" />
+
+        <activity
+            android:name="com.zcp.wanAndroid.ui.splash.SplashActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.zcp.wanAndroid.MainActivity">
+        <activity
+            android:name="com.zcp.wanAndroid.ui.home.HomeActivity"
+            android:launchMode="singleTop"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation">
 
         </activity>
     </application>

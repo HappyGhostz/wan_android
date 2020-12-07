@@ -58,6 +58,31 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="绝胜烟柳满皇都" />
 
+        <com.zcp.wanAndroid.customView.WaveFlashesView
+            android:id="@+id/wave_flashes_view"
+            android:layout_width="@dimen/grid_15"
+            android:layout_height="@dimen/grid_15"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:wf_fillColor="@color/colorLightPrimary"
+            app:wf_flashesColor="@color/colorPrimary"
+            android:layout_marginRight="@dimen/grid_6"
+            />
+        <TextView
+            android:id="@+id/tv_down_load"
+            android:layout_width="@dimen/grid_15"
+            android:layout_height="@dimen/grid_15"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="@dimen/grid_6"
+            android:gravity="center"
+            android:textColor="@color/White"
+            android:text="@{vm.downTimeValue}"
+            tools:text="5"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

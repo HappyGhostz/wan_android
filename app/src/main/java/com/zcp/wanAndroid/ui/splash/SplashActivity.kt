@@ -3,9 +3,11 @@ package com.zcp.wanAndroid.ui.splash
 import com.zcp.wanAndroid.R
 import com.zcp.wanAndroid.base.BaseActivity
 import com.zcp.wanAndroid.databinding.ActivitySplashBinding
+import com.zcp.wanAndroid.ui.home.HomeActivity
 import com.zcp.wanAndroid.ui.splash.di.DaggerSplashActivityComponent
 import com.zcp.wanAndroid.ui.splash.di.SplashViewModule
 import com.zcp.wanAndroid.ui.splash.viewmodel.SplashViewModel
+import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
@@ -25,5 +27,22 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     override fun initView() {
         binding.vm = splashViewModel
         splashViewModel.initData()
+        splashViewModel.startDownTime{
+            openHomeActivity()
+        }
+        binding.waveFlashesView.startAnim()
+        binding.waveFlashesView.setOnClickListener {
+            openHomeActivity()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.waveFlashesView.stopAnim()
+    }
+
+    private fun openHomeActivity(){
+        startActivity<HomeActivity>()
+        finish()
     }
 }

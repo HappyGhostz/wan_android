@@ -164,10 +164,10 @@ class FullScreenUtil(window: Window, context: Context) {
             mWindow.setDecorFitsSystemWindows(false)
             mWindow.insetsController?.hide(WindowInsets.Type.systemBars())
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-            mWindow.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE
+            mWindow.decorView.systemUiVisibility = (
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                     // Set the content to appear under the system bars so that the
                     // content doesn't resize when the system bars hide and show.
-                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
