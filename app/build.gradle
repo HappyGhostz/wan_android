@@ -40,6 +40,12 @@ dependencies {
     implementation AppDependencies.dagger
     kapt AppDependencies.daggerCompiler
     implementation AppDependencies.anko
+    implementation AndroidX.fragment
+    implementation AndroidX.coordinatorlayout
+    implementation AndroidX.recyclerview
+    implementation AndroidX.recyclerviewSelection
+    implementation AndroidX.viewpager2
+    implementation AndroidX.googleMaterial
 }
 
 dependencies {

@@ -8,6 +8,7 @@ import androidx.databinding.ViewDataBinding
 import com.zcp.wanAndroid.WanAndroidApp
 import com.zcp.wanAndroid.appDI.ApplicationComponent
 import com.zcp.wanAndroid.utils.FullScreenUtil
+import org.jetbrains.anko.topPadding
 
 abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
@@ -58,6 +59,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     fun initActionBar(toolbar: Toolbar, string: String, isShowHomeEnable: Boolean = false){
         toolbar.title=string
+        toolbar.topPadding = getStatusBarHeight()
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(isShowHomeEnable)
     }
