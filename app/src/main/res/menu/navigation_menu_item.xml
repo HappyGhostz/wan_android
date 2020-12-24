@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_main"
+        android:icon="@drawable/navigation_home"
+        android:title="@string/home"/>
+
+    <item
+        android:id="@+id/menu_wechat"
+        android:icon="@drawable/navigation_communication"
+        android:title="@string/communication"/>
+
+    <item
+        android:id="@+id/menu_navigation"
+        android:icon="@drawable/navigation_navigation"
+        android:title="@string/navigation"/>
+
+    <item
+        android:id="@+id/menu_my"
+        android:icon="@drawable/navigation_my"
+        android:title="@string/my"/>
+</menu>
