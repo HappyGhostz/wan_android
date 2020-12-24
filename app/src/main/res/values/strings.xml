@@ -4,4 +4,6 @@
     <string name="communication">公众号</string>
     <string name="navigation">导航</string>
     <string name="my">我的</string>
+    <string name="errorReload">加载失败,请点击重试!</string>
+    <string name="emptyReload">哦！世界都空了,请点击重新加载…!</string>
 </resources>

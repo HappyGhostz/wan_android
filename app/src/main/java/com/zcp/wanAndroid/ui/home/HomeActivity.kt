@@ -55,7 +55,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 				R.id.menu_wechat->{
 					if (isSameId(id,R.id.menu_wechat)) return@setOnNavigationItemSelectedListener true
 					homeViewModel.upDateToolbarName("公众号")
-					showFragment(communicationFragment)
+					val countCommunicationFragment = supportFragmentManager.findFragmentByTag("communication")
+					if(countCommunicationFragment==null){
+						addFragment(communicationFragment,R.id.fl_container,"communication")
+					}else{
+						showFragment(communicationFragment)
+					}
 					hideFragment(mainFragment)
 					hideFragment(navigationFragment)
 					hideFragment(myFragment)
@@ -63,7 +68,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 				R.id.menu_navigation->{
 					if (isSameId(id,R.id.menu_navigation)) return@setOnNavigationItemSelectedListener true
 					homeViewModel.upDateToolbarName("导航")
-					showFragment(navigationFragment)
+					val countNavigationFragment = supportFragmentManager.findFragmentByTag("navigation")
+					if(countNavigationFragment==null){
+						addFragment(navigationFragment,R.id.fl_container,"navigation")
+					}else{
+						showFragment(navigationFragment)
+					}
 					hideFragment(mainFragment)
 					hideFragment(communicationFragment)
 					hideFragment(myFragment)
@@ -71,7 +81,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 				R.id.menu_my->{
 					if (isSameId(id,R.id.menu_my)) return@setOnNavigationItemSelectedListener true
 					homeViewModel.upDateToolbarName("我的")
-					showFragment(myFragment)
+					val countMyFragment = supportFragmentManager.findFragmentByTag("my")
+					if(countMyFragment==null){
+						addFragment(myFragment,R.id.fl_container,"my")
+					}else{
+						showFragment(myFragment)
+					}
 					hideFragment(mainFragment)
 					hideFragment(communicationFragment)
 					hideFragment(navigationFragment)
@@ -89,9 +104,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 	}
 
 	private fun addHomeFragment() {
-		addFragment(myFragment,R.id.fl_container,"my")
-		addFragment(navigationFragment,R.id.fl_container,"navigation")
-		addFragment(communicationFragment,R.id.fl_container,"communication")
 		addFragment(mainFragment,R.id.fl_container,"main")
 	}
 

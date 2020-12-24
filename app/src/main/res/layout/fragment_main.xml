@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:background="@color/White"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:text="fragment_main"
+    <data>
+
+        <variable
+            name="loadingViewModel"
+            type="com.zcp.wanAndroid.ui.layoutStatusViewModel.LayoutStatusViewModel" />
+
+        <variable
+            name="vm"
+            type="com.zcp.wanAndroid.ui.main.viewmodel.MainViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="com.zcp.wanAndroid.R" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/load_status"
+            layout="@layout/layout_status"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:vm="@{loadingViewModel}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
