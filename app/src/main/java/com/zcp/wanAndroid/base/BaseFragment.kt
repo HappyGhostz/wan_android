@@ -26,6 +26,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        initInject()
         bindWrapper = FragmentBindingWrapper(
             DataBindingUtil.inflate(inflater, getLayoutResource(), container, false)
         )

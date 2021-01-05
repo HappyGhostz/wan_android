@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "com.zcp.wanAndroid";
+option java_multiple_files = true;
+
+message CookiePreferences {
+      string name = 1;
+      int64 expiresAt = 2;
+      string value = 3;
+      string domain = 4;
+      string path = 5;
+      bool secure = 6;
+      bool httpOnly = 7;
+      bool persistent = 8;
+      bool hostOnly = 9;
+}
+
+message Cookies {
+  int64 id = 1;
+  repeated CookiePreferences cookiePreferences  = 2; // repeated => list
+}
+

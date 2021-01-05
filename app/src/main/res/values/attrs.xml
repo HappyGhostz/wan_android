@@ -12,4 +12,9 @@
         <attr name="delay" format="integer|reference"/>
     </declare-styleable>
 
+    <declare-styleable name="BallPulseFooter">
+        <attr name="srlClassicsSpinnerStyle"/>
+        <attr name="srlAnimatingColor" format="color"/>
+        <attr name="srlNormalColor" format="color"/>
+    </declare-styleable>
 </resources>

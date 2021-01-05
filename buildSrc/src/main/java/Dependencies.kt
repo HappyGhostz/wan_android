@@ -11,6 +11,10 @@ object Versions {
     const val  appcompat_version = "1.2.0"
     const val  core_version = "1.3.1"
     const val  googleMaterial_version = "1.2.1"
+    const val  smartRefresh_version = "2.0.2"
+    const val  retrofit2_version = "2.9.0"
+    const val  datastore_version = "1.0.0-alpha04"
+    const val  proto_version= "3.14.0"
 }
 
 object AndroidX {
@@ -24,6 +28,12 @@ object AndroidX {
     const val viewpager2 =  "androidx.viewpager2:viewpager2:${Versions.viewpager2_version}"
     const val coordinatorlayout =  "androidx.coordinatorlayout:coordinatorlayout:${Versions.coordinatorlayout_version}"
     const val googleMaterial =  "com.google.android.material:material:${Versions.googleMaterial_version}"
+    // Preferences DataStore
+    const val datastorePreferences =  "androidx.datastore:datastore-preferences:${Versions.datastore_version}"
+    // Proto DataStore
+    const val datastoreProto =  "androidx.datastore:datastore-core:${Versions.datastore_version}"
+    const val protobuf =  "com.google.protobuf:protobuf-java:${Versions.proto_version}"
+    const val protoc =  "com.google.protobuf:protoc:${Versions.proto_version}"
 
 }
 
@@ -41,5 +51,7 @@ object AppDependencies{
     const val dagger = "com.google.dagger:dagger:${Versions.dagger_version}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger_version}"
     const val anko =  "org.jetbrains.anko:anko:${Versions.anko_version}"
-
+    const val smartRefreshKernel =  "com.scwang.smart:refresh-layout-kernel:${Versions.smartRefresh_version}"
+    const val retrofit2 =  "com.squareup.retrofit2:retrofit:${Versions.retrofit2_version}"
+    const val retrofit2ConverterGson =  "com.squareup.retrofit2:converter-gson:${Versions.retrofit2_version}"
 }

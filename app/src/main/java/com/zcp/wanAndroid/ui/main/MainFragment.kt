@@ -33,6 +33,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     override fun viewCreated(mRootView: View) {
         binding.vm = mainViewModel
         binding.loadingViewModel = layoutStatusViewModel
+        binding.mainList.rvList.adapter =
     }
 
     override fun initInject() {
