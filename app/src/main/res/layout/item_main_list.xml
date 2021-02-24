@@ -4,6 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View" />
+        <import type="com.zcp.wanAndroid.R" />
         <variable
             name="holder"
             type="com.zcp.wanAndroid.ui.main.adapter.MainListItemViewHold"/>
@@ -17,26 +19,136 @@
 
         <ImageView
             android:id="@+id/iv_like"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/grid_8"
+            android:layout_height="@dimen/grid_7_5"
             android:layout_marginTop="@dimen/grid_2"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:srcCompat="@drawable/ic_white_heart_small"
+            android:onClick="@{()->holder.onImageLikeClicked()}"
             />
 
         <TextView
-            android:layout_margin="@dimen/grid_2"
-            android:layout_width="wrap_content"
+            android:id="@+id/title"
+            android:layout_width="@dimen/grid_0"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/grid_2"
+            android:layout_marginEnd="@dimen/grid_2"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/iv_like"
             app:layout_constraintRight_toRightOf="parent"
-            style="@style/H2"
+            style="@style/H5"
             android:textColor="@color/Black"
             android:maxLines="2"
             android:ellipsize="end"
+            android:gravity="top"
             tools:text="Android Test"
+            android:text="@{holder.title}"
+            android:onClick="@{()->holder.onTitleClicked()}"
             />
+        <LinearLayout
+            android:layout_marginStart="@dimen/grid_2"
+            android:id="@+id/tag_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:layout_constraintLeft_toRightOf="@+id/iv_like"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/grid_2"
+            android:orientation="horizontal"
+            />
+        <LinearLayout
+            android:id="@+id/name_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:layout_constraintLeft_toRightOf="@+id/tag_container"
+            android:orientation="horizontal"
+            android:onClick="@{()->holder.onNameClicked()}"
+            >
+            <TextView
+                android:id="@+id/tv_name_title"
+                android:layout_width="wrap_content"
+                tools:text="名字:"
+                style="@style/Caption3"
+                android:textColor="@color/LightGrey2"
+                android:text="@{holder.nameTitle}"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_name_value"
+                android:layout_width="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:layout_constraintLeft_toRightOf="@+id/tv_name_title"
+                tools:text="zcp"
+                style="@style/Caption3"
+                android:textColor="@color/Black"
+                android:layout_height="wrap_content"
+                android:text="@{holder.nameValue}"
+                android:maxLines="1"
+                android:ellipsize="end"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/type_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:layout_constraintLeft_toRightOf="@+id/name_container"
+            android:layout_marginStart="@dimen/grid_2"
+            android:orientation="horizontal"
+            android:onClick="@{()->holder.onTypeClicked()}"
+            >
+            <TextView
+                android:id="@+id/tv_type_title"
+                android:layout_width="wrap_content"
+                android:text="@string/type"
+                style="@style/Caption3"
+                android:textColor="@color/LightGrey2"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_type_value"
+                android:layout_width="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:layout_constraintLeft_toRightOf="@+id/tv_type_title"
+                tools:text="zcp"
+                style="@style/Caption3"
+                android:textColor="@color/Black"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@{holder.typeValue}"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_time_name"
+            android:layout_width="wrap_content"
+            android:text="@string/time"
+            style="@style/Caption3"
+            android:textColor="@color/LightGrey2"
+            app:layout_constraintTop_toBottomOf="@+id/name_container"
+            app:layout_constraintLeft_toRightOf="@+id/iv_like"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/grid_2"
+            android:layout_marginBottom="@dimen/grid_2"
+            />
+
+        <TextView
+            android:id="@+id/tv_time_value"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/name_container"
+            app:layout_constraintLeft_toRightOf="@+id/tv_time_name"
+            tools:text="zcp"
+            style="@style/Caption3"
+            android:textColor="@color/Black"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_height="wrap_content"
+            android:text="@{holder.time}"
+            android:layout_marginBottom="@dimen/grid_2"/>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

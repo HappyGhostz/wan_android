@@ -33,17 +33,17 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         return binding.root
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        upDataView()
+    }
+
     @LayoutRes
     abstract fun getLayoutResource(): Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = activity
-    }
-
-    override fun onResume() {
-        super.onResume()
-        upDataView()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

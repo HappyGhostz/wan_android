@@ -5,6 +5,14 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
+data class TopArticle(
+    var data: List<ArticleInfo>? = null,
+    var errorCode: Int = 0,
+    var errorMsg: String? = null
+) : Parcelable {
+}
+
+@Parcelize
 data class Article(
     var data: ArticleData? = null,
     var errorCode: Int = 0,
@@ -45,9 +53,9 @@ data class ArticleInfo(
     var origin: String? = null,
     var prefix: String? = null,
     var projectLink: String? = null,
-    var publishTime: Int = 0,
+    var publishTime: Double = 0.0,
     var selfVisible: Int = 0,
-    var shareDate: Int = 0,
+    var shareDate: Double = 0.0,
     var shareUser: String? = null,
     var superChapterId: Int = 0,
     var superChapterName: String? = null,

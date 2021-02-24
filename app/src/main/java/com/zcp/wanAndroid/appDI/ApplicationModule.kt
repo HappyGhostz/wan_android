@@ -8,12 +8,12 @@ import androidx.datastore.preferences.createDataStore
 import com.zcp.wanAndroid.CookiePreferences
 import com.zcp.wanAndroid.Cookies
 import com.zcp.wanAndroid.WanAndroidApp
-import com.zcp.wanAndroid.manager.AppViewModelFactory
 import com.zcp.wanAndroid.manager.CookieJarImpl
 import com.zcp.wanAndroid.manager.cookieManager.CookieManagerImpl
 import com.zcp.wanAndroid.manager.cookieManager.CookieSerializable
 import com.zcp.wanAndroid.manager.cookieManager.CookiesSerializable
 import com.zcp.wanAndroid.net.NetPath
+import com.zcp.wanAndroid.utils.ImageLoadUtils
 import com.zcp.wanAndroid.utils.ResourcesProvider
 import dagger.Module
 import dagger.Provides
@@ -39,22 +39,23 @@ class ApplicationModule(private val appApplication: WanAndroidApp) {
 
     @Singleton
     @Provides
-    internal fun provideRetrofit(cookieJarImpl: CookieJarImpl): Retrofit {
+    internal fun provideOkHttpClient(cookieJarImpl: CookieJarImpl): OkHttpClient {
         val cache = Cache(File(appApplication.cacheDir, "HttpCache"), 1024 * 1024 * 1024)
-        val okHttpClient = OkHttpClient.Builder().cache(cache)
+        return OkHttpClient.Builder().cache(cache)
             .retryOnConnectionFailure(true)
             .cookieJar(cookieJarImpl)
             .connectTimeout(10, TimeUnit.SECONDS)
             .build()
+    }
+
+    @Singleton
+    @Provides
+    internal fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder().baseUrl(NetPath.APP_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
     }
-
-    @Provides
-    fun getAppModelFactory(resourcesProvider: ResourcesProvider,retrofit: Retrofit): AppViewModelFactory =
-        AppViewModelFactory(resourcesProvider,retrofit)
 
     @Singleton
     @Provides
@@ -80,4 +81,8 @@ class ApplicationModule(private val appApplication: WanAndroidApp) {
     @Provides
     internal fun provideCookiesProtoDataStore(context: Context): DataStore<Cookies> =
         appApplication.createDataStore(fileName = "cookies", serializer = CookiesSerializable)
+
+    @Singleton
+    @Provides
+    fun provideImageLoadUtils(): ImageLoadUtils = ImageLoadUtils()
 }

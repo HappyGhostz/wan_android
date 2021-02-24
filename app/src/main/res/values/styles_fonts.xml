@@ -42,6 +42,11 @@
     </style>
 
     <style name="Caption2">
+        <item name="android:textSize">@dimen/font_size_10</item>
+        <item name="android:fontFamily">@font/app_regular_font</item>
+    </style>
+
+    <style name="Caption3">
         <item name="android:textSize">@dimen/font_size_12</item>
         <item name="android:fontFamily">@font/app_regular_font</item>
     </style>

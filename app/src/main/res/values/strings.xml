@@ -6,4 +6,8 @@
     <string name="my">我的</string>
     <string name="errorReload">加载失败,请点击重试!</string>
     <string name="emptyReload">哦！世界都空了,请点击重新加载…!</string>
+    <string name="name">名字：</string>
+    <string name="share_name">分享人：</string>
+    <string name="type">分类：</string>
+    <string name="time">时间：</string>
 </resources>

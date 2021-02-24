@@ -73,6 +73,9 @@ dependencies {
     implementation AppDependencies.smartRefreshKernel
     implementation AppDependencies.retrofit2
     implementation AppDependencies.retrofit2ConverterGson
+    implementation AppDependencies.banner
+    implementation AppDependencies.glide
+    kapt AppDependencies.glideAnnotationProcessor
 }
 
 dependencies {

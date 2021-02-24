@@ -29,6 +29,9 @@
     <color name="Black_161a1d">#161A1D</color>
     <color name="Black_383e43">#383e43</color>
     <color name="Black_131a25">#131a25</color>
+    <color name="Black_99000000">#99000000</color>
+    <color name="Black_66000000">#66000000</color>
+    <color name="Black_4c000000">#4c000000</color>
     <color name="Black_06">#060606</color>
     <color name="Black_3d">#3D3D3D</color>
     <color name="TransBlack80">#CC1C1C1C</color>
@@ -45,5 +48,8 @@
     <color name="view_bg">#00000000</color>
     <color name="shadow">#25808080</color>
     <color name="dialog_bg">#f5f5f5</color>
+    <color name="warning">#EE6352</color>
+    <color name="red">#FF0000</color>
+    <color name="green_primary">#00B14F</color>
 
 </resources>

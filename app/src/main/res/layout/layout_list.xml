@@ -1,56 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White">
 
-    <data>
-
-        <variable
-            name="loadingViewModel"
-            type="com.zcp.wanAndroid.ui.layoutStatusViewModel.LayoutStatusViewModel" />
-        <import type="android.view.View" />
-
-        <import type="com.zcp.wanAndroid.R" />
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/sr_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/White">
+        android:layout_height="match_parent">
 
-        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        <com.zcp.wanAndroid.customView.BezierCircleHeader
+            android:id="@+id/rv_header"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content" />
 
-            <com.zcp.wanAndroid.customView.BezierCircleHeader
-                android:id="@+id/rv_header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                />
-
-            <com.zcp.wanAndroid.customView.BallPulseFooter
-                android:id="@+id/rv_footer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
-
-        <include
-            android:id="@+id/load_status"
-            layout="@layout/layout_status"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:vm="@{loadingViewModel}" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <com.zcp.wanAndroid.customView.BallPulseFooter
+            android:id="@+id/rv_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -15,6 +15,8 @@ object Versions {
     const val  retrofit2_version = "2.9.0"
     const val  datastore_version = "1.0.0-alpha04"
     const val  proto_version= "3.14.0"
+    const val  banner_version= "2.1.0"
+    const val  glide_version= "4.12.0"
 }
 
 object AndroidX {
@@ -54,4 +56,8 @@ object AppDependencies{
     const val smartRefreshKernel =  "com.scwang.smart:refresh-layout-kernel:${Versions.smartRefresh_version}"
     const val retrofit2 =  "com.squareup.retrofit2:retrofit:${Versions.retrofit2_version}"
     const val retrofit2ConverterGson =  "com.squareup.retrofit2:converter-gson:${Versions.retrofit2_version}"
+    const val banner =  "com.youth.banner:banner:${Versions.banner_version}"
+    const val glide =  "com.github.bumptech.glide:glide:${Versions.glide_version}"
+    const val glideAnnotationProcessor =  "com.github.bumptech.glide:compiler:${Versions.glide_version}"
+
 }
