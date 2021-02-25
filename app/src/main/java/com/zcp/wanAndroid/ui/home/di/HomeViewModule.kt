@@ -13,7 +13,7 @@ import dagger.Provides
 @Module
 class HomeViewModule(val activity: HomeActivity) {
     @Provides
-    fun getSplashViewModel(): HomeViewModel {
+    fun getHomeViewModel(): HomeViewModel {
         return ViewModelProvider(activity).get(HomeViewModel::class.java)
     }
     @Provides

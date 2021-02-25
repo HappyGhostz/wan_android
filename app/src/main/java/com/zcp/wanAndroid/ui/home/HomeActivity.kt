@@ -75,12 +75,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                     hideFragment(myFragment)
                     val countCommunicationFragment =
                         supportFragmentManager.findFragmentByTag("communication")
-//
-//                    if (countCommunicationFragment == null) {
-//                        addFragment(communicationFragment, R.id.fl_container, "communication")
-//                    } else {
-//                        showFragment(communicationFragment)
-//                    }
                     addOrShowFragment(communicationFragment, countCommunicationFragment, "communication")
                 }
                 R.id.menu_navigation -> {
@@ -95,11 +89,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                     hideFragment(myFragment)
                     val countNavigationFragment =
                         supportFragmentManager.findFragmentByTag("navigation")
-//                    if (countNavigationFragment == null) {
-//                        addFragment(navigationFragment, R.id.fl_container, "navigation")
-//                    } else {
-//                        showFragment(navigationFragment)
-//                    }
                     addOrShowFragment(navigationFragment, countNavigationFragment, "navigation")
                 }
                 R.id.menu_my -> {
@@ -109,11 +98,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                     hideFragment(communicationFragment)
                     hideFragment(navigationFragment)
                     val countMyFragment = supportFragmentManager.findFragmentByTag("my")
-//                    if (countMyFragment == null) {
-//                        addFragment(myFragment, R.id.fl_container, "my")
-//                    } else {
-//                        showFragment(myFragment)
-//                    }
                     addOrShowFragment(myFragment, countMyFragment, "my")
                 }
             }

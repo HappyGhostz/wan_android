@@ -10,4 +10,7 @@
     <string name="share_name">分享人：</string>
     <string name="type">分类：</string>
     <string name="time">时间：</string>
+    <string name="signTitle">登陆/注册</string>
+    <string name="signInNameHint">昵称</string>
+    <string name="signInPasswordHint">密码</string>
 </resources>

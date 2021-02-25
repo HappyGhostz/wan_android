@@ -75,18 +75,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     private fun setClickListener() {
         mainListAdapter.apply {
-            onTitleClicked {
-
-            }
-            onNameClicked {
-
-            }
-            onTypeClicked {
-
-            }
-            onImageLikeClicked {
-
-            }
+            onTitleClicked {}
+            onNameClicked {}
+            onTypeClicked {}
+            onImageLikeClicked {}
         }
     }
 

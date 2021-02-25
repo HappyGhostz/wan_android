@@ -57,8 +57,10 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
     }
 
 
-    fun initActionBar(toolbar: Toolbar, string: String, isShowHomeEnable: Boolean = false){
-        toolbar.title=string
+    fun initActionBar(toolbar: Toolbar, title: String? = null, isShowHomeEnable: Boolean = false) {
+        title?.let {
+            toolbar.title = title
+        }
         toolbar.topPadding = getStatusBarHeight()
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(isShowHomeEnable)

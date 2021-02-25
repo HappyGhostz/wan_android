@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zcp.wanAndroid.ui.sign.viewmodel.SignInOrUpViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="com.zcp.wanAndroid.R" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:elevation="@dimen/grid_1"
+            android:paddingTop="@dimen/grid_0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_close"
+            app:title="@string/signTitle"
+            app:titleTextColor="@color/White" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/login_background"
+            android:padding="@dimen/grid_4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/grid_4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolBar">
+
+                <com.zcp.wanAndroid.customView.CircularInageView
+                    android:id="@+id/ci_Icon"
+                    android:layout_width="@dimen/grid_30"
+                    android:layout_height="@dimen/grid_30"
+                    app:civ_border = "false"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:civ_shadow_radius = "10dp"
+                    tools:srcCompat = "@drawable/chushu"
+                    android:scaleType="centerCrop"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_sentence_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/ci_Icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textColor="@color/Black"
+                    android:layout_marginTop="@dimen/grid_2"
+                    style="@style/LiShuH2"
+                    tools:text="最是一年春好处"
+                    android:maxLines="2"
+                    />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_sentence_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/ci_Icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_sentence_one"
+                    app:layout_constraintBottom_toBottomOf="@+id/ci_Icon"
+                    android:textColor="@color/Black"
+                    android:layout_marginTop="@dimen/grid_2"
+                    style="@style/LiShuH2"
+                    tools:text="绝胜烟柳满皇都"
+                    android:maxLines="2"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/ci_Icon"
+                    android:layout_marginTop="@dimen/grid_15"
+                    >
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:padding="@dimen/grid_2"
+                        android:id="@+id/et_user_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edittext_background_selected"
+                        android:hint="@string/signInNameHint"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:layout_marginTop="@dimen/grid_4"
+                        android:padding="@dimen/grid_2"
+                        android:id="@+id/et_user_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edittext_background_selected"
+                        android:layout_below="@+id/et_user_name"
+                        android:hint="@string/signInPasswordHint"
+                        />
+
+
+                </RelativeLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
