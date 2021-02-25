@@ -25,6 +25,9 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>() {
     }
 
     override fun initView() {
+        binding.vm = signInOrUpViewModel
+
         initActionBar(binding.toolBar, isShowHomeEnable = true)
+        signInOrUpViewModel.initData()
     }
 }

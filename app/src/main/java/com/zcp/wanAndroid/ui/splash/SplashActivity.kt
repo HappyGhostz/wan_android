@@ -4,6 +4,7 @@ import com.zcp.wanAndroid.R
 import com.zcp.wanAndroid.base.BaseActivity
 import com.zcp.wanAndroid.databinding.ActivitySplashBinding
 import com.zcp.wanAndroid.ui.home.HomeActivity
+import com.zcp.wanAndroid.ui.sign.SignInOrSignUpActivity
 import com.zcp.wanAndroid.ui.splash.di.DaggerSplashActivityComponent
 import com.zcp.wanAndroid.ui.splash.di.SplashViewModule
 import com.zcp.wanAndroid.ui.splash.viewmodel.SplashViewModel
@@ -42,7 +43,13 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     }
 
     private fun openHomeActivity(){
-        startActivity<HomeActivity>()
+//        startActivity<HomeActivity>()
+        openSignInOrSignUpActivity()
+        finish()
+    }
+
+    private fun openSignInOrSignUpActivity(){
+        startActivity<SignInOrSignUpActivity>()
         finish()
     }
 }

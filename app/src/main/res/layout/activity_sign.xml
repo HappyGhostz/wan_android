@@ -24,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:elevation="@dimen/grid_1"
             android:paddingTop="@dimen/grid_0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -52,68 +51,167 @@
                     android:id="@+id/ci_Icon"
                     android:layout_width="@dimen/grid_30"
                     android:layout_height="@dimen/grid_30"
-                    app:civ_border = "false"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:civ_shadow_radius = "10dp"
-                    tools:srcCompat = "@drawable/chushu"
                     android:scaleType="centerCrop"
-                    />
+                    app:civ_border="false"
+                    app:civ_shadow_radius="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@{vm.circularImg}"
+                    tools:srcCompat="@drawable/chushu" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_sentence_one"
+                    style="@style/LiShuH2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@+id/ci_Icon"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:textColor="@color/Black"
                     android:layout_marginTop="@dimen/grid_2"
-                    style="@style/LiShuH2"
-                    tools:text="最是一年春好处"
                     android:maxLines="2"
-                    />
+                    android:textColor="@color/Black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ci_Icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@{vm.splashSentenceOne}"
+                    tools:text="最是一年春好处" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_sentence_two"
+                    style="@style/LiShuH2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@+id/ci_Icon"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_sentence_one"
-                    app:layout_constraintBottom_toBottomOf="@+id/ci_Icon"
-                    android:textColor="@color/Black"
                     android:layout_marginTop="@dimen/grid_2"
-                    style="@style/LiShuH2"
-                    tools:text="绝胜烟柳满皇都"
                     android:maxLines="2"
-                    />
+                    android:textColor="@color/Black"
+                    app:layout_constraintBottom_toBottomOf="@+id/ci_Icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ci_Icon"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_sentence_one"
+                    android:text="@{vm.splashSentenceTwo}"
+                    tools:text="绝胜烟柳满皇都" />
 
                 <RelativeLayout
+                    android:id="@+id/sign_in_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/ci_Icon"
                     android:layout_marginTop="@dimen/grid_15"
-                    >
+                    app:layout_constraintTop_toBottomOf="@+id/ci_Icon">
+
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:padding="@dimen/grid_2"
                         android:id="@+id/et_user_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edittext_background_selected"
+                        android:drawableStart="@drawable/ic_account_circle_select"
+                        android:drawablePadding="@dimen/grid_2"
                         android:hint="@string/signInNameHint"
-                        />
+                        android:maxLines="1"
+                        android:padding="@dimen/grid_2" />
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_marginTop="@dimen/grid_4"
-                        android:padding="@dimen/grid_2"
-                        android:id="@+id/et_user_password"
+                    <LinearLayout
+                        android:id="@+id/input_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/custom_edittext_background_selected"
                         android:layout_below="@+id/et_user_name"
-                        android:hint="@string/signInPasswordHint"
+                        android:layout_marginTop="@dimen/grid_4"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/custom_edittext_background_selected"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/et_user_password"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:background="@null"
+                            android:drawableStart="@drawable/ic_lock_select"
+                            android:drawablePadding="@dimen/grid_2"
+                            android:hint="@string/signInPasswordHint"
+                            android:maxLines="1"
+                            android:padding="@dimen/grid_2" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_show_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/grid_2"
+                            android:layout_marginRight="@dimen/grid_2"
+                            app:srcCompat="@drawable/ic_visibility_select"
+                             />
+                    </LinearLayout>
+<!--                    app:srcCompat="@{vm.isShowPassWord ? @drawable/ic_visibility_off_select : @drawable/ic_visibility_select}"-->
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/grid_4"
+                        android:id="@+id/remember_password"
+                        android:layout_below="@+id/input_container"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:checked="true"
+                            android:button="@drawable/ic_check_box_select"
+                            />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rememberPassWordInfo"
+                            android:layout_marginStart="@dimen/grid_2"
+                            android:layout_weight="1.0"
+                            />
+                        <TextView
+                            android:id="@+id/tv_reset"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/resetPassWordInfo"
+                            />
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/bt_sign_in"
+                        android:layout_below="@+id/remember_password"
+                        android:layout_marginTop="@dimen/grid_18"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/signIn"
+                        android:background="@drawable/button_rad_shape"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/large_font"
                         />
 
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/bt_sign_in"
+                        android:layout_marginTop="@dimen/grid_9"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/goSignIn"
+                            android:textColor="@color/White"
+                            style="@style/H4"
+                            />
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            app:cardCornerRadius="@dimen/grid_6"
+                            android:layout_marginStart="@dimen/grid_4"
+                            android:padding="@dimen/grid_4"
+                            android:layout_height="wrap_content">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="@dimen/grid_12"
+                                android:layout_height="@dimen/grid_12"
+                                app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right"
+                                />
+                        </androidx.cardview.widget.CardView>
+
+
+
+                    </LinearLayout>
 
                 </RelativeLayout>
 
