@@ -17,6 +17,8 @@ class SignInOrUpViewModel(private val resourcesProvider: ResourcesProvider) : Vi
     var splashSentenceTwo = ObservableField<String>("")
     var isShowPassWord = ObservableField<Boolean>(false)
 
+    var showingSignUpFragment: Boolean = false
+
     fun initData(){
         val calendar = Calendar.getInstance()
         calendar.apply {

@@ -2,6 +2,8 @@ package com.zcp.wanAndroid.ui.sign.di
 
 import androidx.lifecycle.ViewModelProvider
 import com.zcp.wanAndroid.ui.sign.SignInOrSignUpActivity
+import com.zcp.wanAndroid.ui.sign.signIn.SignInFragment
+import com.zcp.wanAndroid.ui.sign.signUp.SignUpFragment
 import com.zcp.wanAndroid.ui.sign.viewmodel.SignInOrUpViewModel
 import com.zcp.wanAndroid.ui.sign.viewmodel.SignInOrUpViewModelFactory
 import com.zcp.wanAndroid.ui.splash.viewmodel.SplashViewModel
@@ -25,4 +27,10 @@ class SignInOrUpViewModule(private val activity: SignInOrSignUpActivity) {
     fun provideSignInOrUpViewModelFactory(resourcesProvider: ResourcesProvider): SignInOrUpViewModelFactory {
         return SignInOrUpViewModelFactory(resourcesProvider)
     }
+
+    @Provides
+    fun provideSignInFragment(): SignInFragment = SignInFragment()
+
+    @Provides
+    fun provideSignUpFragment(): SignUpFragment = SignUpFragment()
 }
