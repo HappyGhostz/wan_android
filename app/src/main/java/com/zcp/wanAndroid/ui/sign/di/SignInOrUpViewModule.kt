@@ -1,5 +1,7 @@
 package com.zcp.wanAndroid.ui.sign.di
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.ViewModelProvider
 import com.zcp.wanAndroid.ui.sign.SignInOrSignUpActivity
 import com.zcp.wanAndroid.ui.sign.signIn.SignInFragment
@@ -24,8 +26,8 @@ class SignInOrUpViewModule(private val activity: SignInOrSignUpActivity) {
     }
 
     @Provides
-    fun provideSignInOrUpViewModelFactory(resourcesProvider: ResourcesProvider): SignInOrUpViewModelFactory {
-        return SignInOrUpViewModelFactory(resourcesProvider)
+    fun provideSignInOrUpViewModelFactory(resourcesProvider: ResourcesProvider, dataStore: DataStore<Preferences>): SignInOrUpViewModelFactory {
+        return SignInOrUpViewModelFactory(resourcesProvider, dataStore)
     }
 
     @Provides

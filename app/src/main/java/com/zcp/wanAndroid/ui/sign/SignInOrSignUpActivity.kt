@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.Observer
 import com.zcp.wanAndroid.R
 import com.zcp.wanAndroid.base.BaseActivity
 import com.zcp.wanAndroid.databinding.ActivitySignBinding
@@ -44,17 +45,71 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>() {
         binding.vm = signInOrUpViewModel
 
         initActionBar(binding.toolBar, isShowHomeEnable = true)
+        binding.toolBar.setNavigationOnClickListener {
+            finish()
+        }
         signInOrUpViewModel.initData()
         addFragmentWithCallback(object : FragmentManager.FragmentLifecycleCallbacks() {
             override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
                 super.onFragmentStarted(fm, f)
-                signInFragment.binding.btGoSignUp.setOnClickListener {
-                    flipCard()
-                }
+                setSignInViewClickListener()
             }
         }) {
             add(R.id.sign_in_and_sign_up_container, signInFragment, "signIn")
         }
+        initStatusValue()
+
+    }
+
+    private fun initStatusValue() {
+        signInOrUpViewModel.initShowPasswordValue()
+        signInOrUpViewModel.isShowUsedPassword.value?.let {
+            setPassWordStatus(it)
+        }
+        signInOrUpViewModel.isShowUsedPassword.observe(this, Observer<Boolean> {
+            if (signInFragment.isVisible) {
+                signInFragment.setPassWordStatus(it)
+            } else {
+                setPassWordStatus(it)
+            }
+        })
+
+        signInOrUpViewModel.isRememberUserPassword.value?.let {
+            setRememberPassWordStatus(it)
+        }
+
+        signInOrUpViewModel.isRememberUserPassword.observe(this, Observer<Boolean> {
+            if (signInFragment.isVisible) {
+                signInFragment.setRememberCheckOutStatus(it)
+            } else {
+                setRememberPassWordStatus(it)
+            }
+        })
+    }
+
+    private fun setSignInViewClickListener() {
+        signInFragment.binding.btGoSignUp.setOnClickListener {
+            flipCard()
+        }
+        signInFragment.binding.ivShowPassword.setOnClickListener {
+            signInOrUpViewModel.isShowUsedPassword.value?.let { isShowUsedPassword ->
+                signInOrUpViewModel.postIsShowUsedPasswordValue(!isShowUsedPassword)
+                signInOrUpViewModel.saveIsShowUsedPasswordValue(!isShowUsedPassword)
+            }
+        }
+        signInFragment.binding.cbRememberPassword.setOnClickListener {
+            signInOrUpViewModel.isRememberUserPassword.value?.let { isRememberPassword ->
+                signInOrUpViewModel.postIsRememberPasswordValue(!isRememberPassword)
+                signInOrUpViewModel.saveIsRememberPasswordValue(!isRememberPassword)
+            }
+        }
+    }
+
+    private fun setPassWordStatus(it: Boolean) {
+        signInFragment.isShowUsedPassword = it
+    }
+    private fun setRememberPassWordStatus(it: Boolean) {
+        signInFragment.isRememberUserPassword = it
     }
 
     private fun flipCard() {
@@ -66,10 +121,10 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>() {
         signInOrUpViewModel.showingSignUpFragment = true
 
         replaceFragmentWithAnimationsAndCallBack(
-            R.animator.card_flip_right_in,
-            R.animator.card_flip_right_out,
             R.animator.card_flip_left_in,
             R.animator.card_flip_left_out,
+            R.animator.card_flip_right_in,
+            R.animator.card_flip_right_out,
             object : FragmentManager.FragmentLifecycleCallbacks() {
                 override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
                     super.onFragmentStarted(fm, f)

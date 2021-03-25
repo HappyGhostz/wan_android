@@ -30,11 +30,13 @@
             android:id="@+id/et_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_edittext_background_selected"
+            android:background="@drawable/custom_edittext_background_focused_select"
             android:drawableStart="@drawable/ic_account_circle_select"
             android:drawablePadding="@dimen/grid_2"
             android:hint="@string/signInNameHint"
             android:maxLines="1"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
             android:padding="@dimen/grid_2" />
 
         <LinearLayout
@@ -57,15 +59,19 @@
                 android:drawablePadding="@dimen/grid_2"
                 android:hint="@string/signInPasswordHint"
                 android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
+                android:inputType="textVisiblePassword"
                 android:padding="@dimen/grid_2" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:clickable="true"
                 android:id="@+id/iv_show_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/grid_2"
                 android:layout_marginRight="@dimen/grid_2"
-                app:srcCompat="@drawable/ic_visibility_select"
+                android:background="@drawable/ic_visibility_select"
                 />
         </LinearLayout>
         <!--                    app:srcCompat="@{vm.isShowPassWord ? @drawable/ic_visibility_off_select : @drawable/ic_visibility_select}"-->
@@ -77,6 +83,7 @@
             android:orientation="horizontal"
             android:layout_height="wrap_content">
             <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cb_remember_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:checked="true"
@@ -105,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/signIn"
-            android:background="@drawable/button_rad_shape"
+            android:background="@drawable/button_enable_select"
             android:textColor="@color/White"
             android:textSize="@dimen/large_font"
             />
