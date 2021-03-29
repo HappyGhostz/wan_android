@@ -1,12 +1,10 @@
 package com.zcp.wanAndroid.ui.sign
 
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import com.zcp.wanAndroid.R
 import com.zcp.wanAndroid.base.BaseActivity
-import com.zcp.wanAndroid.customView.CustomDialogFragment
 import com.zcp.wanAndroid.databinding.ActivitySignBinding
 import com.zcp.wanAndroid.extension.addFragmentWithCallback
 import com.zcp.wanAndroid.extension.replaceFragmentWithAnimationsAndCallBack
@@ -14,16 +12,16 @@ import com.zcp.wanAndroid.ui.home.HomeActivity
 import com.zcp.wanAndroid.ui.sign.di.DaggerSignInOrUpComponent
 import com.zcp.wanAndroid.ui.sign.di.SignInOrUpViewModule
 import com.zcp.wanAndroid.ui.sign.signIn.SignInFragment
-import com.zcp.wanAndroid.ui.sign.signIn.viewModel.SignInPageData
 import com.zcp.wanAndroid.ui.sign.signUp.SignUpFragment
 import com.zcp.wanAndroid.ui.sign.viewmodel.SignInOrUpViewModel
+import com.zcp.wanAndroid.ui.sign.viewmodel.SignPageData
 import com.zcp.wanAndroid.utils.DialogUtils
 import com.zcp.wanAndroid.utils.ResponseLoadStatus
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
 class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>(),
-    SignInFragment.OnSignInClickListener {
+    OnSignClickListener {
 
     @Inject
     lateinit var signInOrUpViewModel: SignInOrUpViewModel
@@ -39,6 +37,8 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>(),
 
     override fun onAttachFragment(fragment: Fragment) {
         if (fragment is SignInFragment) {
+            fragment.setOnSignInClickListener(this)
+        } else if (fragment is SignUpFragment) {
             fragment.setOnSignInClickListener(this)
         }
     }
@@ -79,10 +79,16 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>(),
             setPassWordStatus(it)
         }
         signInOrUpViewModel.isShowUsedPassword.observe(this, Observer<Boolean> {
-            if (signInFragment.isVisible) {
-                signInFragment.setPassWordStatus(it)
-            } else {
-                setPassWordStatus(it)
+            when {
+                signInFragment.isVisible -> {
+                    signInFragment.setPassWordStatus(it)
+                }
+                signUpFragment.isVisible -> {
+                    signUpFragment.setPassWordStatus(it)
+                }
+                else -> {
+                    setPassWordStatus(it)
+                }
             }
         })
 
@@ -91,10 +97,16 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>(),
         }
 
         signInOrUpViewModel.isRememberUserPassword.observe(this, Observer<Boolean> {
-            if (signInFragment.isVisible) {
-                signInFragment.setRememberCheckOutStatus(it)
-            } else {
-                setRememberPassWordStatus(it)
+            when {
+                signInFragment.isVisible -> {
+                    signInFragment.setRememberCheckOutStatus(it)
+                }
+                signUpFragment.isVisible -> {
+                    signUpFragment.setRememberCheckOutStatus(it)
+                }
+                else -> {
+                    setPassWordStatus(it)
+                }
             }
         })
     }
@@ -119,10 +131,12 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>(),
 
     private fun setPassWordStatus(it: Boolean) {
         signInFragment.isShowUsedPassword = it
+        signUpFragment.isShowUsedPassword = it
     }
 
     private fun setRememberPassWordStatus(it: Boolean) {
         signInFragment.isRememberUserPassword = it
+        signUpFragment.isRememberUserPassword = it
     }
 
     private fun flipCard() {
@@ -143,16 +157,46 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>(),
                     signUpFragment.binding.btGoSignIn.setOnClickListener {
                         flipCard()
                     }
+                    signUpFragment.binding.ivShowPassword.setOnClickListener {
+                        signInOrUpViewModel.isShowUsedPassword.value?.let { isShowUsedPassword ->
+                            signInOrUpViewModel.postIsShowUsedPasswordValue(!isShowUsedPassword)
+                            signInOrUpViewModel.saveIsShowUsedPasswordValue(!isShowUsedPassword)
+                        }
+                    }
+                    signUpFragment.binding.ivShowConfirmPassword.setOnClickListener {
+                        signInOrUpViewModel.isShowUsedPassword.value?.let { isShowUsedPassword ->
+                            signInOrUpViewModel.postIsShowUsedPasswordValue(!isShowUsedPassword)
+                            signInOrUpViewModel.saveIsShowUsedPasswordValue(!isShowUsedPassword)
+                        }
+                    }
+                    signUpFragment.binding.cbSignUpRemember.setOnClickListener {
+                        signInOrUpViewModel.isRememberUserPassword.value?.let { isRememberPassword ->
+                            signInOrUpViewModel.postIsRememberPasswordValue(!isRememberPassword)
+                            signInOrUpViewModel.saveIsRememberPasswordValue(!isRememberPassword)
+                        }
+                    }
                 }
             }) {
             hide(signInFragment)
-            add(R.id.sign_in_and_sign_up_container, signUpFragment, "signUp")
+            add(R.id.sign_in_and_sign_up_container, signUpFragment.apply {
+                isRememberUserPassword =
+                    signInOrUpViewModel.isRememberUserPassword.value ?: false
+                isShowUsedPassword = signInOrUpViewModel.isShowUsedPassword.value ?: false
+            }, "signUp")
             addToBackStack(null)
         }
     }
 
-    override fun onSignInClickListener(signInPageData: SignInPageData) {
-        when (signInPageData.loadingStatus) {
+    override fun onSignInClickListener(signPageData: SignPageData) {
+        afterClickSignInOrUp(signPageData)
+    }
+
+    override fun onSignUpClickListener(signPageData: SignPageData) {
+        afterClickSignInOrUp(signPageData)
+    }
+
+    private fun afterClickSignInOrUp(signPageData: SignPageData) {
+        when (signPageData.loadingStatus) {
             ResponseLoadStatus.LOADING -> {
                 dialogutils.dismissDialog()
                 dialogutils.createdLoadingDialog(
@@ -166,13 +210,14 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>(),
             }
             ResponseLoadStatus.SUCCESSED -> {
                 dialogutils.dismissDialog()
-                if (signInPageData.signInData?.errorMsg.isNullOrEmpty() && signInPageData.signInData?.errorCode == 0) {
+                if (signPageData.signData?.errorMsg.isNullOrEmpty() && signPageData.signData?.errorCode == 0) {
                     startActivity<HomeActivity>()
+                    finish()
                 } else {
                     dialogutils.createdInfoDialog(
                         this,
                         supportFragmentManager,
-                        info = signInPageData.signInData?.errorMsg
+                        info = signPageData.signData?.errorMsg
                     )
                 }
             }

@@ -5,8 +5,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.ViewModelProvider
 import com.zcp.wanAndroid.ui.sign.signIn.SignInFragment
 import com.zcp.wanAndroid.ui.sign.signIn.viewModel.SignInViewModel
-import com.zcp.wanAndroid.utils.DialogUtils
-import com.zcp.wanAndroid.utils.ResourcesProvider
 import dagger.Module
 import dagger.Provides
 

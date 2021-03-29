@@ -30,7 +30,7 @@
             android:id="@+id/et_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_edittext_background_selected"
+            android:background="@drawable/custom_edittext_background_focused_select"
             android:drawableStart="@drawable/ic_account_circle_select"
             android:drawablePadding="@dimen/grid_2"
             android:hint="@string/signInNameHint"
@@ -57,6 +57,9 @@
                 android:drawablePadding="@dimen/grid_2"
                 android:hint="@string/signInPasswordHint"
                 android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
+                android:inputType="textVisiblePassword"
                 android:padding="@dimen/grid_2" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -65,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/grid_2"
                 android:layout_marginRight="@dimen/grid_2"
-                app:srcCompat="@drawable/ic_visibility_select"
+                android:background="@drawable/ic_visibility_select"
                 />
         </LinearLayout>
 
@@ -87,8 +90,11 @@
                 android:background="@null"
                 android:drawableStart="@drawable/ic_lock_select"
                 android:drawablePadding="@dimen/grid_2"
-                android:hint="@string/signUpConfirmPasswordHint"
+                android:hint="@string/signInPasswordHint"
                 android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
+                android:inputType="textVisiblePassword"
                 android:padding="@dimen/grid_2" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -109,6 +115,7 @@
             android:orientation="horizontal"
             android:layout_height="wrap_content">
             <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cb_sign_up_remember"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:checked="true"
@@ -131,13 +138,13 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bt_sign_in"
+            android:id="@+id/bt_sign_up"
             android:layout_below="@+id/remember_password"
             android:layout_marginTop="@dimen/grid_18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/signIn"
-            android:background="@drawable/button_rad_shape"
+            android:text="@string/signUp"
+            android:background="@drawable/button_enable_select"
             android:textColor="@color/White"
             android:textSize="@dimen/large_font"
             />
@@ -146,7 +153,7 @@
             android:id="@+id/bt_go_sign_in"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_below="@+id/bt_sign_in"
+            android:layout_below="@+id/bt_sign_up"
             android:layout_marginTop="@dimen/grid_9"
             android:gravity="center"
             android:layout_height="wrap_content">

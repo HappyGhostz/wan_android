@@ -10,8 +10,6 @@ import com.zcp.wanAndroid.ui.sign.signIn.SignInFragment
 import com.zcp.wanAndroid.ui.sign.signUp.SignUpFragment
 import com.zcp.wanAndroid.ui.sign.viewmodel.SignInOrUpViewModel
 import com.zcp.wanAndroid.ui.sign.viewmodel.SignInOrUpViewModelFactory
-import com.zcp.wanAndroid.ui.splash.viewmodel.SplashViewModel
-import com.zcp.wanAndroid.ui.splash.viewmodel.SplashViewModelFactory
 import com.zcp.wanAndroid.utils.DialogUtils
 import com.zcp.wanAndroid.utils.ResourcesProvider
 import dagger.Module
@@ -44,7 +42,9 @@ class SignInOrUpViewModule(private val activity: SignInOrSignUpActivity) {
         }
 
     @Provides
-    fun provideSignUpFragment(): SignUpFragment = SignUpFragment()
+    fun provideSignUpFragment(signInAndUpRepository: SignInAndUpRepository): SignUpFragment = SignUpFragment().apply {
+        this.signInAndUpRepository = signInAndUpRepository
+    }
 
     @Provides
     fun provideSignInAndUpRepository(retrofit: Retrofit): SignInAndUpRepository {

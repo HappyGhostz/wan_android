@@ -9,11 +9,12 @@ import androidx.lifecycle.Observer
 import com.zcp.wanAndroid.R
 import com.zcp.wanAndroid.base.BaseFragment
 import com.zcp.wanAndroid.databinding.FragmentSignInBinding
+import com.zcp.wanAndroid.ui.sign.OnSignClickListener
 import com.zcp.wanAndroid.ui.sign.SignInAndUpRepository
 import com.zcp.wanAndroid.ui.sign.signIn.di.DaggerSignInComponent
 import com.zcp.wanAndroid.ui.sign.signIn.di.SignInViewModule
-import com.zcp.wanAndroid.ui.sign.signIn.viewModel.SignInPageData
 import com.zcp.wanAndroid.ui.sign.signIn.viewModel.SignInViewModel
+import com.zcp.wanAndroid.ui.sign.viewmodel.SignPageData
 import javax.inject.Inject
 
 class SignInFragment : BaseFragment<FragmentSignInBinding>() {
@@ -53,7 +54,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>() {
                 binding.etUserPassword.text.toString()
             )
         }
-        signInViewModel.signInData.observe(this, Observer<SignInPageData> {
+        signInViewModel.signData.observe(this, Observer<SignPageData> {
             callback?.onSignInClickListener(it)
         })
         signInViewModel.userName.observe(this, Observer<String> {
@@ -67,6 +68,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>() {
     }
 
     fun setRememberCheckOutStatus(isRememberPassword: Boolean) {
+        isRememberUserPassword = isRememberPassword
         binding.cbRememberPassword.isChecked = isRememberPassword
     }
 
@@ -119,14 +121,10 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>() {
             .inject(this)
     }
 
-    var callback: OnSignInClickListener? = null
+    var callback: OnSignClickListener? = null
 
-    fun setOnSignInClickListener(callback: OnSignInClickListener) {
+    fun setOnSignInClickListener(callback: OnSignClickListener) {
         this.callback = callback
-    }
-
-    interface OnSignInClickListener {
-        fun onSignInClickListener(signInPageData: SignInPageData)
     }
 
 }

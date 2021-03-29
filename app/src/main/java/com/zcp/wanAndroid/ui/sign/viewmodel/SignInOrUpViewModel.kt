@@ -1,6 +1,7 @@
 package com.zcp.wanAndroid.ui.sign.viewmodel
 
 import android.graphics.drawable.Drawable
+import android.os.Parcelable
 import androidx.databinding.ObservableField
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -8,11 +9,19 @@ import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zcp.wanAndroid.module.SignData
 import com.zcp.wanAndroid.utils.*
+import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.util.*
+
+@Parcelize
+data class SignPageData(
+    val signData: SignData? = null,
+    val loadingStatus: ResponseLoadStatus
+) : Parcelable {}
 
 class SignInOrUpViewModel(private val resourcesProvider: ResourcesProvider, private var dataStore: DataStore<Preferences>) : ViewModel() {
 

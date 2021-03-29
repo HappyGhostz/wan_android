@@ -4,8 +4,8 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class SignInData(
-    val signData: Data,
+data class SignData(
+    val signData: Data?,
     val errorCode: Int,
     val errorMsg: String
 ): Parcelable

@@ -1,6 +1,5 @@
 package com.zcp.wanAndroid.ui.sign.signIn.viewModel
 
-import android.os.Parcelable
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -8,26 +7,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zcp.wanAndroid.module.SignInData
 import com.zcp.wanAndroid.ui.sign.SignInAndUpRepository
+import com.zcp.wanAndroid.ui.sign.viewmodel.SignPageData
 import com.zcp.wanAndroid.utils.ResponseLoadStatus
 import com.zcp.wanAndroid.utils.WanAndroidDataStoreConstants.PASS_WORD
 import com.zcp.wanAndroid.utils.WanAndroidDataStoreConstants.USER_NAME
-import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-
-@Parcelize
-data class SignInPageData(
-    val signInData: SignInData? = null,
-    val loadingStatus: ResponseLoadStatus
-) : Parcelable {}
 
 class SignInViewModel : ViewModel() {
 
     var dataStore: DataStore<Preferences>? = null
-    private var _signInData = MutableLiveData<SignInPageData>()
-    val signInData: LiveData<SignInPageData> = _signInData
+    private var _signInData = MutableLiveData<SignPageData>()
+    val signData: LiveData<SignPageData> = _signInData
 
     private var _userName = MutableLiveData<String>()
     val userName: LiveData<String> = _userName
@@ -64,13 +56,13 @@ class SignInViewModel : ViewModel() {
             viewModelScope.launch {
                 apiRepository.signIn(userName, password)
                     .onStart {
-                        _signInData.postValue(SignInPageData(null, ResponseLoadStatus.LOADING))
+                        _signInData.postValue(SignPageData(null, ResponseLoadStatus.LOADING))
                     }
                     .catch {
-                        _signInData.postValue(SignInPageData(null, ResponseLoadStatus.ERROR))
+                        _signInData.postValue(SignPageData(null, ResponseLoadStatus.ERROR))
                     }
                     .collectLatest {
-                        _signInData.postValue(SignInPageData(it, ResponseLoadStatus.SUCCESSED))
+                        _signInData.postValue(SignPageData(it, ResponseLoadStatus.SUCCESSED))
                     }
             }
         }
