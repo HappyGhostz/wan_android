@@ -1,25 +1,29 @@
 package com.zcp.wanAndroid.ui.sign
 
-import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.Observer
 import com.zcp.wanAndroid.R
 import com.zcp.wanAndroid.base.BaseActivity
+import com.zcp.wanAndroid.customView.CustomDialogFragment
 import com.zcp.wanAndroid.databinding.ActivitySignBinding
-import com.zcp.wanAndroid.extension.addFragment
 import com.zcp.wanAndroid.extension.addFragmentWithCallback
-import com.zcp.wanAndroid.extension.replaceFragmentWithAnimations
 import com.zcp.wanAndroid.extension.replaceFragmentWithAnimationsAndCallBack
+import com.zcp.wanAndroid.ui.home.HomeActivity
 import com.zcp.wanAndroid.ui.sign.di.DaggerSignInOrUpComponent
 import com.zcp.wanAndroid.ui.sign.di.SignInOrUpViewModule
 import com.zcp.wanAndroid.ui.sign.signIn.SignInFragment
+import com.zcp.wanAndroid.ui.sign.signIn.viewModel.SignInPageData
 import com.zcp.wanAndroid.ui.sign.signUp.SignUpFragment
 import com.zcp.wanAndroid.ui.sign.viewmodel.SignInOrUpViewModel
+import com.zcp.wanAndroid.utils.DialogUtils
+import com.zcp.wanAndroid.utils.ResponseLoadStatus
+import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
-class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>() {
+class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>(),
+    SignInFragment.OnSignInClickListener {
 
     @Inject
     lateinit var signInOrUpViewModel: SignInOrUpViewModel
@@ -30,6 +34,14 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>() {
     @Inject
     lateinit var signInFragment: SignInFragment
 
+    @Inject
+    lateinit var dialogutils: DialogUtils
+
+    override fun onAttachFragment(fragment: Fragment) {
+        if (fragment is SignInFragment) {
+            fragment.setOnSignInClickListener(this)
+        }
+    }
 
     override fun getLayoutResource(): Int = R.layout.activity_sign
 
@@ -108,6 +120,7 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>() {
     private fun setPassWordStatus(it: Boolean) {
         signInFragment.isShowUsedPassword = it
     }
+
     private fun setRememberPassWordStatus(it: Boolean) {
         signInFragment.isRememberUserPassword = it
     }
@@ -119,7 +132,6 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>() {
             return
         }
         signInOrUpViewModel.showingSignUpFragment = true
-
         replaceFragmentWithAnimationsAndCallBack(
             R.animator.card_flip_left_in,
             R.animator.card_flip_left_out,
@@ -133,8 +145,37 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>() {
                     }
                 }
             }) {
-            replace(R.id.sign_in_and_sign_up_container, signUpFragment, "signUp")
+            hide(signInFragment)
+            add(R.id.sign_in_and_sign_up_container, signUpFragment, "signUp")
             addToBackStack(null)
+        }
+    }
+
+    override fun onSignInClickListener(signInPageData: SignInPageData) {
+        when (signInPageData.loadingStatus) {
+            ResponseLoadStatus.LOADING -> {
+                dialogutils.dismissDialog()
+                dialogutils.createdLoadingDialog(
+                    supportFragmentManager,
+                    getWidthScreen() / 4
+                )
+            }
+            ResponseLoadStatus.ERROR -> {
+                dialogutils.dismissDialog()
+                dialogutils.createdNetErrorDialog(this, supportFragmentManager)
+            }
+            ResponseLoadStatus.SUCCESSED -> {
+                dialogutils.dismissDialog()
+                if (signInPageData.signInData?.errorMsg.isNullOrEmpty() && signInPageData.signInData?.errorCode == 0) {
+                    startActivity<HomeActivity>()
+                } else {
+                    dialogutils.createdInfoDialog(
+                        this,
+                        supportFragmentManager,
+                        info = signInPageData.signInData?.errorMsg
+                    )
+                }
+            }
         }
     }
 }

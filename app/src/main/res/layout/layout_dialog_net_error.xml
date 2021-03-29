@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:background="@drawable/bg_white_round_shape"
+    android:padding="@dimen/grid_4"
+    android:layout_margin="@dimen/grid_2">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/error"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/H3"
+        android:textColor="@color/warning"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_info"
+        android:text="@string/net_error_info"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/grid_6"
+        android:textColor="@color/Black"
+        style="@style/H5"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginTop="@dimen/grid_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_info"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/bt_cancel"
+        android:text="@string/cancel"
+        android:textColor="@color/White"
+        android:background="@drawable/bt_rad_round_shape"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/grid_2"
+        android:layout_marginTop="@dimen/grid_4"
+        android:background="@drawable/button_rad_shape"
+        android:text="@string/confirm"
+        android:textColor="@color/White"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/bt_cancel"
+        app:layout_constraintTop_toBottomOf="@+id/tv_info" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

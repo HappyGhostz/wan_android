@@ -1,6 +1,8 @@
 package com.zcp.wanAndroid.base
 
+import android.app.Activity
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
@@ -9,6 +11,7 @@ import com.zcp.wanAndroid.WanAndroidApp
 import com.zcp.wanAndroid.appDI.ApplicationComponent
 import com.zcp.wanAndroid.utils.FullScreenUtil
 import org.jetbrains.anko.topPadding
+
 
 abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
@@ -68,6 +71,18 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     protected fun getAppComponent(): ApplicationComponent? {
         return WanAndroidApp.instance().getAppComponent()
+    }
+
+    open fun getHeightScreen(): Int {
+        val outMetrics = DisplayMetrics()
+        display?.getRealMetrics(outMetrics)
+        return outMetrics.heightPixels
+    }
+
+    open fun getWidthScreen(): Int {
+        val outMetrics = DisplayMetrics()
+        display?.getRealMetrics(outMetrics)
+        return outMetrics.widthPixels
     }
 
 }

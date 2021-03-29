@@ -19,4 +19,9 @@
     <string name="signIn">登陆</string>
     <string name="goSignUp">去注册</string>
     <string name="goSignIn">去登陆</string>
+    <string name="error">错误</string>
+    <string name="net_error_info">请检查网络连接...</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
+    <string name="info">提示</string>
 </resources>

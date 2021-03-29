@@ -1,8 +1,12 @@
 package com.zcp.wanAndroid.ui.sign.signIn.di
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.ViewModelProvider
 import com.zcp.wanAndroid.ui.sign.signIn.SignInFragment
 import com.zcp.wanAndroid.ui.sign.signIn.viewModel.SignInViewModel
+import com.zcp.wanAndroid.utils.DialogUtils
+import com.zcp.wanAndroid.utils.ResourcesProvider
 import dagger.Module
 import dagger.Provides
 
@@ -10,7 +14,9 @@ import dagger.Provides
 class SignInViewModule(private val signInFragment: SignInFragment) {
 
     @Provides
-    fun provideSignInViewModel(): SignInViewModel {
-        return ViewModelProvider(signInFragment).get(SignInViewModel::class.java)
+    fun provideSignInViewModel(dataStore: DataStore<Preferences>): SignInViewModel {
+        return ViewModelProvider(signInFragment).get(SignInViewModel::class.java).apply {
+            this.dataStore = dataStore
+        }
     }
 }

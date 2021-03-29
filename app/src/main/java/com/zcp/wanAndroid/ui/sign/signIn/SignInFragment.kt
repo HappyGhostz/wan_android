@@ -9,8 +9,10 @@ import androidx.lifecycle.Observer
 import com.zcp.wanAndroid.R
 import com.zcp.wanAndroid.base.BaseFragment
 import com.zcp.wanAndroid.databinding.FragmentSignInBinding
+import com.zcp.wanAndroid.ui.sign.SignInAndUpRepository
 import com.zcp.wanAndroid.ui.sign.signIn.di.DaggerSignInComponent
 import com.zcp.wanAndroid.ui.sign.signIn.di.SignInViewModule
+import com.zcp.wanAndroid.ui.sign.signIn.viewModel.SignInPageData
 import com.zcp.wanAndroid.ui.sign.signIn.viewModel.SignInViewModel
 import javax.inject.Inject
 
@@ -21,6 +23,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>() {
 
     var isShowUsedPassword: Boolean = false
     var isRememberUserPassword: Boolean = false
+    var signInAndUpRepository: SignInAndUpRepository? = null
 
     override fun getLayoutResource(): Int = R.layout.fragment_sign_in
     override fun upDataView() {
@@ -38,6 +41,29 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>() {
     private fun initView() {
         setPassWordStatus(isShowUsedPassword)
         setRememberCheckOutStatus(isRememberUserPassword)
+        binding.btSignIn.setOnClickListener {
+            signInViewModel.signInApp(
+                signInAndUpRepository,
+                binding.etUserName.text.toString(),
+                binding.etUserPassword.text.toString()
+            )
+            signInViewModel.saveOrCleanUser(
+                binding.cbRememberPassword.isChecked,
+                binding.etUserName.text.toString(),
+                binding.etUserPassword.text.toString()
+            )
+        }
+        signInViewModel.signInData.observe(this, Observer<SignInPageData> {
+            callback?.onSignInClickListener(it)
+        })
+        signInViewModel.userName.observe(this, Observer<String> {
+            binding.etUserName.setText(it)
+        })
+
+        signInViewModel.password.observe(this, Observer<String> {
+            binding.etUserPassword.setText(it)
+        })
+
     }
 
     fun setRememberCheckOutStatus(isRememberPassword: Boolean) {
@@ -92,4 +118,15 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>() {
             .build()
             .inject(this)
     }
+
+    var callback: OnSignInClickListener? = null
+
+    fun setOnSignInClickListener(callback: OnSignInClickListener) {
+        this.callback = callback
+    }
+
+    interface OnSignInClickListener {
+        fun onSignInClickListener(signInPageData: SignInPageData)
+    }
+
 }

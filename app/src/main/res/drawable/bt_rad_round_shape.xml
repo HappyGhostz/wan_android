@@ -4,5 +4,5 @@
 
     <corners android:radius="@dimen/grid_2"/>
     <solid
-        android:color="@color/green_primary"/>
+        android:color="@color/warning"/>
 </shape>
