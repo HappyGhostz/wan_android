@@ -70,7 +70,6 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>(),
             add(R.id.sign_in_and_sign_up_container, signInFragment, "signIn")
         }
         initStatusValue()
-
     }
 
     private fun initStatusValue() {
@@ -198,7 +197,6 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>(),
     private fun afterClickSignInOrUp(signPageData: SignPageData) {
         when (signPageData.loadingStatus) {
             ResponseLoadStatus.LOADING -> {
-                dialogutils.dismissDialog()
                 dialogutils.createdLoadingDialog(
                     supportFragmentManager,
                     getWidthScreen() / 4
@@ -208,7 +206,7 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>(),
                 dialogutils.dismissDialog()
                 dialogutils.createdNetErrorDialog(this, supportFragmentManager)
             }
-            ResponseLoadStatus.SUCCESSED -> {
+            ResponseLoadStatus.SUCCEEDED -> {
                 dialogutils.dismissDialog()
                 if (signPageData.signData?.errorMsg.isNullOrEmpty() && signPageData.signData?.errorCode == 0) {
                     startActivity<HomeActivity>()
@@ -221,6 +219,14 @@ class SignInOrSignUpActivity : BaseActivity<ActivitySignBinding>(),
                     )
                 }
             }
+            ResponseLoadStatus.UNKNOWN -> {
+                dialogutils.dismissDialog()
+            }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        dialogutils.dismissDialog()
     }
 }

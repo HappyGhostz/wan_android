@@ -2,6 +2,7 @@ package com.zcp.wanAndroid.base
 
 import android.content.Context
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,6 +67,19 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     abstract fun viewCreated(mRootView: View)
 
     abstract fun initInject()
+
+    open fun getHeightScreen(): Int {
+        val outMetrics = DisplayMetrics()
+        activity?.display?.getRealMetrics(outMetrics)
+        return outMetrics.heightPixels
+    }
+
+    open fun getWidthScreen(): Int {
+        val outMetrics = DisplayMetrics()
+        activity?.display?.getRealMetrics(outMetrics)
+        return outMetrics.widthPixels
+    }
+
 }
 
 /**

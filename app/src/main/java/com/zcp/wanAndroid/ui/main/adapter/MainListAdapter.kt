@@ -3,7 +3,6 @@ package com.zcp.wanAndroid.ui.main.adapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +15,6 @@ import com.zcp.wanAndroid.databinding.ItemMainListBinding
 import com.zcp.wanAndroid.module.ArticleInfo
 import com.zcp.wanAndroid.module.Banner
 import com.zcp.wanAndroid.module.BannerData
-import com.zcp.wanAndroid.utils.ImageLoadUtils
 import com.zcp.wanAndroid.utils.ResourcesProvider
 
 const val LIST_ITEM = 0
@@ -38,7 +36,7 @@ class MainListAdapter(
     private var onTitleClicked: ((ArticleInfo) -> Unit)? = null
     private var onNameClicked: ((ArticleInfo) -> Unit)? = null
     private var onTypeClicked: ((ArticleInfo) -> Unit)? = null
-    private var onImageLikeClicked: ((ArticleInfo) -> Unit)? = null
+    private var onImageLikeClicked: ((ArticleInfo, Int) -> Unit)? = null
 
     fun onTitleClicked(callback: (ArticleInfo) -> Unit) {
         onTitleClicked = callback
@@ -52,7 +50,7 @@ class MainListAdapter(
         onTypeClicked = callback
     }
 
-    fun onImageLikeClicked(callback: (ArticleInfo) -> Unit) {
+    fun onImageLikeClicked(callback: (ArticleInfo, Int) -> Unit) {
         onImageLikeClicked = callback
     }
 
@@ -66,6 +64,13 @@ class MainListAdapter(
         val oldSet = dataSet
         dataSet.addAll(articleInfos)
         notifyItemRangeChanged(oldSet.size, dataSet.size)
+    }
+
+    fun updateCollectData(position: Int) {
+        dataSet[position-1].apply {
+            collect = !collect
+        }
+        notifyItemChanged(position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -152,7 +157,7 @@ class MainListAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is MainListBannerViewHold -> holder.setData(bannerDataSet)
-            is MainListItemViewHold -> holder.setData(dataSet[position - 1])
+            is MainListItemViewHold -> holder.setData(dataSet[position - 1], position)
         }
     }
 }

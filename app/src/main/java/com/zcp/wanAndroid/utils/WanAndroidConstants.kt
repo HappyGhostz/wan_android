@@ -10,6 +10,7 @@ object WanAndroidDataStoreConstants {
 }
 enum class ResponseLoadStatus{
     LOADING,
-    SUCCESSED,
-    ERROR
+    SUCCEEDED,
+    ERROR,
+    UNKNOWN
 }

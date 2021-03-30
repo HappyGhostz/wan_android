@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zcp.wanAndroid.Cookies
 import com.zcp.wanAndroid.ui.sign.SignInAndUpRepository
 import com.zcp.wanAndroid.ui.sign.viewmodel.SignPageData
 import com.zcp.wanAndroid.utils.ResponseLoadStatus
@@ -14,10 +15,12 @@ import com.zcp.wanAndroid.utils.WanAndroidDataStoreConstants.PASS_WORD
 import com.zcp.wanAndroid.utils.WanAndroidDataStoreConstants.USER_NAME
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class SignInViewModel : ViewModel() {
 
     var dataStore: DataStore<Preferences>? = null
+    var cookies: DataStore<Cookies>? = null
     private var _signInData = MutableLiveData<SignPageData>()
     val signData: LiveData<SignPageData> = _signInData
 
@@ -52,6 +55,16 @@ class SignInViewModel : ViewModel() {
         userName: String,
         password: String
     ) {
+        runBlocking {
+            cookies?.let {
+                it.updateData { cookies ->
+                    if(cookies.cookiePreferencesOrBuilderList.size>0){
+                        cookies.toBuilder().clearCookiePreferences().build()
+                    }
+                    cookies
+                }
+            }
+        }
         signInAndUpRepository?.let { apiRepository ->
             viewModelScope.launch {
                 apiRepository.signIn(userName, password)
@@ -62,7 +75,7 @@ class SignInViewModel : ViewModel() {
                         _signInData.postValue(SignPageData(null, ResponseLoadStatus.ERROR))
                     }
                     .collectLatest {
-                        _signInData.postValue(SignPageData(it, ResponseLoadStatus.SUCCESSED))
+                        _signInData.postValue(SignPageData(it, ResponseLoadStatus.SUCCEEDED))
                     }
             }
         }

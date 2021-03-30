@@ -11,8 +11,11 @@ import com.zcp.wanAndroid.ui.layoutStatusViewModel.LayoutStatusViewModel
 import com.zcp.wanAndroid.ui.main.adapter.MainListAdapter
 import com.zcp.wanAndroid.ui.main.di.DaggerMainFragmentComponent
 import com.zcp.wanAndroid.ui.main.di.MainFragmentViewModule
+import com.zcp.wanAndroid.ui.main.viewmodel.CollectStatusData
 import com.zcp.wanAndroid.ui.main.viewmodel.MainListData
 import com.zcp.wanAndroid.ui.main.viewmodel.MainViewModel
+import com.zcp.wanAndroid.utils.DialogUtils
+import com.zcp.wanAndroid.utils.ResponseLoadStatus
 import kotlinx.android.synthetic.main.layout_list.view.*
 import javax.inject.Inject
 
@@ -30,6 +33,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     @Inject
     lateinit var layoutStatusViewModel: LayoutStatusViewModel
+
+    @Inject
+    lateinit var dialogUtils: DialogUtils
 
     override fun upDataView() {
         mainViewModel.initData()
@@ -71,6 +77,28 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 mainListAdapter.loadMoreData(it.articleInfos!!.toMutableList())
             }
         })
+        mainViewModel.collectStatusData.observe(this, Observer<CollectStatusData> {
+            when (it.loadStatus) {
+                ResponseLoadStatus.LOADING -> {
+                    dialogUtils.dismissDialog()
+                    dialogUtils.createdLoadingDialog(
+                        childFragmentManager,
+                        getWidthScreen() / 4
+                    )
+                }
+                ResponseLoadStatus.ERROR -> {
+                    dialogUtils.dismissDialog()
+                    dialogUtils.createdInfoDialog(context, childFragmentManager, info = it.msg)
+                }
+                ResponseLoadStatus.SUCCEEDED -> {
+                    dialogUtils.dismissDialog()
+                    mainListAdapter.updateCollectData(it.position)
+                }
+                else -> {
+                    dialogUtils.dismissDialog()
+                }
+            }
+        })
     }
 
     private fun setClickListener() {
@@ -78,7 +106,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             onTitleClicked {}
             onNameClicked {}
             onTypeClicked {}
-            onImageLikeClicked {}
+            onImageLikeClicked { articleInfo, position ->
+                mainViewModel.setCollectArticleInfo(articleInfo, position)
+            }
         }
     }
 

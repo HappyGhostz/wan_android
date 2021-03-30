@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.TypedValue
 import android.view.View
-import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.ObservableField
@@ -13,7 +13,6 @@ import com.zcp.wanAndroid.R
 import com.zcp.wanAndroid.module.ArticleInfo
 import com.zcp.wanAndroid.module.Tag
 import com.zcp.wanAndroid.utils.ResourcesProvider
-import org.jetbrains.anko.padding
 import org.jetbrains.anko.textColor
 
 private const val ARTICLE_TYPE_TOP = 1
@@ -26,7 +25,7 @@ class MainListItemViewHold constructor(
     private val onTitleClicked: ((ArticleInfo) -> Unit)?,
     private val onNameClicked: ((ArticleInfo) -> Unit)?,
     private val onTypeClicked: ((ArticleInfo) -> Unit)?,
-    private val onImageLikeClicked: ((ArticleInfo) -> Unit)?,
+    private val onImageLikeClicked: ((ArticleInfo, Int) -> Unit)?,
 ) : RecyclerView.ViewHolder(itemView) {
     var title = ObservableField<String>()
     var nameTitle = ObservableField<String>()
@@ -35,6 +34,7 @@ class MainListItemViewHold constructor(
     var time = ObservableField<String>()
 
     private var mArticleInfo: ArticleInfo? = null
+    private var currentPosition = 0
 
     private val tagContainer: LinearLayout by lazy(LazyThreadSafetyMode.NONE) {
         itemView.findViewById<LinearLayout>(
@@ -42,16 +42,29 @@ class MainListItemViewHold constructor(
         )
     }
 
+    private val ivLike: ImageView by lazy(LazyThreadSafetyMode.NONE) {
+        itemView.findViewById<ImageView>(
+            R.id.iv_like
+        )
+    }
+
     fun setData(
         articleInfo: ArticleInfo,
+        position: Int,
     ) {
         mArticleInfo = articleInfo
+        currentPosition = position
         title.set(articleInfo.title)
         nameTitle.set(if (articleInfo.author.isNullOrEmpty()) "分享人" else "作者")
         nameValue.set(if (articleInfo.author.isNullOrEmpty()) articleInfo.shareUser else articleInfo.author)
         typeValue.set("${articleInfo.superChapterName} / ${articleInfo.chapterName}")
         time.set(articleInfo.niceDate)
         ensureTags(articleInfo.tags, articleInfo.type)
+        if(articleInfo.collect){
+            ivLike.setImageResource(R.drawable.ic_read_heart_small)
+        }else{
+            ivLike.setImageResource(R.drawable.ic_white_heart_small)
+        }
     }
 
     private fun ensureTags(
@@ -107,7 +120,7 @@ class MainListItemViewHold constructor(
     }
     fun onImageLikeClicked() {
         mArticleInfo?.let {
-            onImageLikeClicked?.invoke(it)
+            onImageLikeClicked?.invoke(it, currentPosition)
         }
     }
 }

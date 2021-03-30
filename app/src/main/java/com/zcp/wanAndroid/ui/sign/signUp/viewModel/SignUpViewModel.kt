@@ -33,7 +33,7 @@ class SignUpViewModel : ViewModel() {
             _signUnData.postValue(
                 SignPageData(
                     SignData(null, -1, "密码不一致!"),
-                    ResponseLoadStatus.SUCCESSED
+                    ResponseLoadStatus.SUCCEEDED
                 )
             )
             return
@@ -49,7 +49,7 @@ class SignUpViewModel : ViewModel() {
                         _signUnData.postValue(SignPageData(null, ResponseLoadStatus.ERROR))
                     }
                     .collectLatest {
-                        _signUnData.postValue(SignPageData(it, ResponseLoadStatus.SUCCESSED))
+                        _signUnData.postValue(SignPageData(it, ResponseLoadStatus.SUCCEEDED))
                     }
             }
         }

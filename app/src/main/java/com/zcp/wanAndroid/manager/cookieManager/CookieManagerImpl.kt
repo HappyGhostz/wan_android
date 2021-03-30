@@ -4,6 +4,7 @@ import androidx.datastore.core.DataStore
 import com.zcp.wanAndroid.CookiePreferences
 import com.zcp.wanAndroid.Cookies
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import okhttp3.Cookie
@@ -42,7 +43,8 @@ class CookieManagerImpl : CookieManager {
     }
 
     override fun getCookies(): MutableList<Cookie> {
-        var cookies = mutableListOf<Cookie>()
+        val cookies = mutableListOf<Cookie>()
+        val removeCookies = mutableMapOf<Int, Cookie>()
         var cookiePreferencesList = dataStore.data.catch { exception ->
             // dataStore.data throws an IOException when an error is encountered when reading data
             if (exception is IOException) {
@@ -51,13 +53,22 @@ class CookieManagerImpl : CookieManager {
                 throw exception
             }
         }.map { it ->
-            it.cookiePreferencesList.forEach {
-                val cookie = changePreferencesToCookie(it)
-                if(!isCookieExpired(cookie)){
+            it.cookiePreferencesList.forEachIndexed { index, cookiePreferences ->
+                val cookie = changePreferencesToCookie(cookiePreferences)
+                if (!isCookieExpired(cookie)) {
                     cookies.add(cookie)
+                } else {
+                    removeCookies[index] = cookie
                 }
             }
             cookies
+        }
+        removeCookies.keys.forEach { index ->
+            runBlocking {
+                dataStore.updateData { cookies ->
+                    cookies.toBuilder().removeCookiePreferences(index).build()
+                }
+            }
         }
         return cookies
     }

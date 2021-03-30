@@ -3,6 +3,7 @@ package com.zcp.wanAndroid.appDI
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import com.zcp.wanAndroid.Cookies
 import com.zcp.wanAndroid.utils.ImageLoadUtils
 import com.zcp.wanAndroid.utils.ResourcesProvider
 import dagger.Component
@@ -16,5 +17,6 @@ interface ApplicationComponent {
     fun getResources(): ResourcesProvider
     fun getRetrofit(): Retrofit
     fun getAppDataStore(): DataStore<Preferences>
+    fun getAppCookiesDataStore(): DataStore<Cookies>
     fun getImageLoadUtils(): ImageLoadUtils
 }
